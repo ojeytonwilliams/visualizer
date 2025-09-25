@@ -12,9 +12,7 @@
       "cache": false,
       "persistent": true
     },
-    "lint": {
-      "dependsOn": ["^build"]
-    },
+    "lint": {},
     "format": {},
     "type-check": {
       "dependsOn": ["^build"]

@@ -13,4 +13,5 @@ export default defineConfig(
       },
     },
   },
+  { ignores: ['dist', '.astro', '**/*.d.ts'] }
 );
