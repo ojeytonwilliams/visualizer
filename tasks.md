@@ -13,9 +13,9 @@ This is a detailed task checklist for developing the project structure visualize
 ## II. Module 1: The Parser (Backend Service)
 
 - **Setup & Framework**
-  - [ ] Initialize a **Node.js** project for the backend service.
-  - [ ] Install **Fastify** and related dependencies.
-  - [ ] Define the API structure, starting with the `POST /api/parse` endpoint.
+  - [x] Initialize a **Node.js** project for the backend service.
+  - [x] Install **Fastify** and related dependencies.
+  - [x] Define the API structure, starting with the `POST /api/parse` endpoint.
   - [ ] Implement basic request handling for the `/api/parse` endpoint to receive the project folder path.
 - **Core Parsing Logic**
   - [ ] Implement directory scanning using Node's built-in **`fs` (File System) module**.
