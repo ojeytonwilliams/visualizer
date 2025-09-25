@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "A project structure visualizer application with backend parser and frontend visualizer",
   "private": true,
+  "license": "BSD-3-Clause",
   "scripts": {
     "dev": "turbo dev",
     "build": "turbo build",
