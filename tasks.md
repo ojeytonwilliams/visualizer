@@ -5,8 +5,8 @@ This is a detailed task checklist for developing the project structure visualize
 - **Project Initialization**
   - [x] Initialize the monorepo or project structure.
   - [x] Install **pnpm** globally (if necessary).
-  - [ ] Set up the root `package.json` with necessary scripts and dependencies.
-  - [ ] Configure eslint
+  - [x] Set up the root `package.json` with necessary scripts and dependencies.
+  - [x] Configure eslint
 
 ---
 
