@@ -2,12 +2,12 @@ import Fastify from 'fastify';
 import cors from '@fastify/cors';
 
 const fastify = Fastify({
-  logger: true
+  logger: true,
 });
 
 // Register CORS plugin
 await fastify.register(cors, {
-  origin: true
+  origin: true,
 });
 
 // Health check endpoint
@@ -18,18 +18,18 @@ fastify.get('/health', async (request, reply) => {
 // Parse endpoint - placeholder for now
 fastify.post('/api/parse', async (request, reply) => {
   const { folderPath } = request.body as { folderPath: string };
-  
+
   if (!folderPath) {
     reply.code(400);
     return { error: 'folderPath is required' };
   }
 
   // TODO: Implement parsing logic
-  return { 
-    message: 'Parser endpoint ready', 
+  return {
+    message: 'Parser endpoint ready',
     folderPath,
     nodes: [],
-    links: []
+    links: [],
   };
 });
 
