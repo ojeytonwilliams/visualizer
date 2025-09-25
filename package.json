@@ -4,12 +4,12 @@
   "description": "A project structure visualizer application with backend parser and frontend visualizer",
   "private": true,
   "scripts": {
-    "dev": "concurrently \"pnpm --filter parser dev\" \"pnpm --filter visualizer dev\"",
-    "build": "pnpm --recursive --filter !root build",
-    "lint": "pnpm --recursive --filter !root lint",
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "lint": "turbo lint",
     "format": "prettier --write .",
-    "type-check": "pnpm --recursive --filter !root type-check",
-    "clean": "pnpm --recursive --filter !root clean && rm -rf node_modules"
+    "type-check": "turbo type-check",
+    "clean": "turbo clean && rm -rf node_modules"
   },
   "devDependencies": {
     "@types/node": "^22.18.6",
@@ -19,6 +19,7 @@
     "eslint": "^9.21.1",
     "eslint-config-prettier": "^9.1.0",
     "prettier": "^3.6.2",
+    "turbo": "^2.5.8",
     "typescript": "^5.9.2"
   },
   "engines": {

@@ -1,35 +1,29 @@
 import js from '@eslint/js';
-import typescript from '@typescript-eslint/eslint-plugin';
-import typescriptParser from '@typescript-eslint/parser';
 import prettierConfig from 'eslint-config-prettier';
 
 export default [
-  // Base configuration for all files
+  // Base configuration for root-level files only
   js.configs.recommended,
 
-  // TypeScript configuration
+  // Configuration for root-level TypeScript files (if any)
   {
-    files: ['**/*.{ts,tsx}'],
-    languageOptions: {
-      parser: typescriptParser,
-      parserOptions: {
-        ecmaVersion: 2022,
-        sourceType: 'module',
-      },
-    },
-    plugins: {
-      '@typescript-eslint': typescript,
-    },
+    files: ['*.{ts,js}'],
     rules: {
-      ...typescript.configs.recommended.rules,
+      // Minimal rules for root configuration files
+      'no-unused-vars': 'warn',
     },
   },
 
   // Prettier configuration to avoid conflicts
   prettierConfig,
 
-  // Ignore patterns
+  // Ignore patterns - packages have their own ESLint configs
   {
-    ignores: ['node_modules/**'],
+    ignores: [
+      'node_modules/**',
+      'packages/**', // Each package manages its own ESLint
+      'dist/**',
+      '.turbo/**'
+    ],
   },
 ];

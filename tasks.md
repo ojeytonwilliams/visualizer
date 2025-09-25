@@ -1,12 +1,17 @@
 This is a detailed task checklist for developing the project structure visualizer application, broken down by module and task type.
 
+## General guidelines
+
+Aim for simplicity (e.g. using minimal configuration), modularity (e.g. collect related functionality in modules and expose minimal apis).
+
 ## I. General Development Setup
 
 - **Project Initialization**
   - [x] Initialize the monorepo or project structure.
   - [x] Install **pnpm** globally (if necessary).
   - [x] Set up the root `package.json` with necessary scripts and dependencies.
-  - [x] Configure eslint
+  - [x] Use turborepo to manage the monorepo
+  - [x] Configure eslint separately in each package
 
 ---
 
