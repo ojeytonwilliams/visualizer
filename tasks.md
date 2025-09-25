@@ -4,6 +4,14 @@ This is a detailed task checklist for developing the project structure visualize
 
 Aim for simplicity (e.g. using minimal configuration), modularity (e.g. collect related functionality in modules and expose minimal apis).
 
+Write tests first. When implementing any feature, first specify that feature with tests. Having created the tests, stop!
+
+Use vitest for tests.
+
+Avoid mocking where possible, except for the filesystem which should be mocked by memfs always. Otherwise prefer dependency injection
+
+Use TypeScript and ESM
+
 ## I. General Development Setup
 
 - **Project Initialization**
@@ -23,9 +31,9 @@ Aim for simplicity (e.g. using minimal configuration), modularity (e.g. collect 
   - [x] Define the API structure, starting with the `POST /api/parse` endpoint.
   - [ ] Implement basic request handling for the `/api/parse` endpoint to receive the project folder path.
 - **Core Parsing Logic**
-  - [ ] Implement directory scanning using Node's built-in **`fs` (File System) module**.
-  - [ ] Develop a function to **recursively scan** the specified project folder.
-  - [ ] Filter files to include only relevant source code extensions (`.ts`, `.tsx`, `.js`, `.jsx`).
+  - [x] Implement directory scanning using Node's built-in **`fs` (File System) module**.
+  - [x] Develop a function to **recursively scan** the specified project folder.
+  - [x] Filter files to include only relevant source code extensions (`.ts`, `.tsx`, `.js`, `.jsx`).
   - [ ] Integrate the **TypeScript Compiler API** for AST generation.
   - [ ] Develop the core parser function to iterate over files and generate an **AST** for each.
   - [ ] Implement logic to traverse the AST and identify all **`import` and `require` statements**.
