@@ -36,9 +36,10 @@ Use TypeScript and ESM
   - [x] Implement directory scanning using Node's built-in **`fs` (File System) module**.
   - [x] Develop a function to **recursively scan** the specified project folder.
   - [x] Filter files to include only relevant source code extensions (`.ts`, `.tsx`, `.js`, `.jsx`).
-  - [ ] Integrate the **TypeScript Compiler API** for AST generation.
-  - [ ] Develop the core parser function to iterate over files and generate an **AST** for each.
-  - [ ] Implement logic to traverse the AST and identify all **`import` and `require` statements**, ignoring path aliases
+  - [x] Develop the import-parser module which exposes a single function `parse({ filename: string, contents: string}): string[]` which returns a list of all the files imported or required by the input file.
+- - **Details**
+    - [x] Use typescript's createSourceFile to generate an AST
+    - [x] Implement logic to traverse the AST and identify all **`import` and `require` statements**, ignoring path aliases
 - **Data Structure Generation**
   - [ ] Define the generic graph data structure (`nodes` and `links` arrays).
   - [ ] Implement logic to build the **`nodes` array**, using the **relative file path** as the unique `id`.
