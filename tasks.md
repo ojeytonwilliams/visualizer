@@ -41,9 +41,36 @@ Use TypeScript and ESM
     - [x] Use typescript's createSourceFile to generate an AST
     - [x] Implement logic to traverse the AST and identify all **`import` and `require` statements**, ignoring path aliases
 - **Data Structure Generation**
-  - [ ] Define the generic graph data structure (`nodes` and `links` arrays).
-  - [ ] Implement logic to build the **`nodes` array**, using the **relative file path** as the unique `id`.
-  - [ ] Implement logic to build the **`links` array** based on resolved import/export relationships, using `source` (importer) and `target` (imported file) file paths.
+Sample Output:
+
+```json
+{
+  "nodes": [
+    {
+      "id": "src/index.ts"
+    },
+    {
+      "id": "src/utils/api.ts"
+    },
+    {
+      "id": "src/components/Login.tsx"
+    }
+  ],
+  "links": [
+    {
+      "source": "src/index.ts",
+      "target": "src/components/Login.tsx"
+    },
+    {
+      "source": "src/components/Login.tsx",
+      "target": "src/utils/api.ts"
+    }
+  ]
+}
+```
+  - [ ] Create a file-parser module that takes a `ScannedFile[]` array as input and returns an object conforming to the sample output. Subtasks:
+    - [ ] Implement logic to build the **`nodes` array**, using the **relative file path** as the unique `id`.
+    - [ ] Implement logic to build the **`links` array** based on resolved import/export relationships, using `source` (importer) and `target` (imported file) file paths.
 - **Transformer Plugin Development**
   - [ ] Create the initial **Transformer Plugin** module.
   - [ ] Implement the transformation function that accepts the **generic graph data structure**.
