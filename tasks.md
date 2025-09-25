@@ -4,7 +4,9 @@ This is a detailed task checklist for developing the project structure visualize
 
 Aim for simplicity (e.g. using minimal configuration), modularity (e.g. collect related functionality in modules and expose minimal apis).
 
-Write tests first. When implementing any feature, first specify that feature with tests. Having created the tests, stop!
+Write tests first. When implementing any feature, first specify that feature with tests. Any implementation should be the bare minimum. For example, if testing the `add` function in a `maths` module, `add` should be defined as `function add() {}`. Just enough that it can be tested. 
+
+After creating the tests, stop!
 
 Use vitest for tests.
 
@@ -28,16 +30,15 @@ Use TypeScript and ESM
 - **Setup & Framework**
   - [x] Initialize a **Node.js** project for the backend service.
   - [x] Install **Fastify** and related dependencies.
-  - [x] Define the API structure, starting with the `POST /api/parse` endpoint.
-  - [ ] Implement basic request handling for the `/api/parse` endpoint to receive the project folder path.
+  - [x] Define the API structure, starting with the `POST /dependency-map` endpoint.
+  - [ ] Implement basic request handling for the `/dependency-map` endpoint to receive the project folder path.
 - **Core Parsing Logic**
   - [x] Implement directory scanning using Node's built-in **`fs` (File System) module**.
   - [x] Develop a function to **recursively scan** the specified project folder.
   - [x] Filter files to include only relevant source code extensions (`.ts`, `.tsx`, `.js`, `.jsx`).
   - [ ] Integrate the **TypeScript Compiler API** for AST generation.
   - [ ] Develop the core parser function to iterate over files and generate an **AST** for each.
-  - [ ] Implement logic to traverse the AST and identify all **`import` and `require` statements**.
-  - [ ] Develop a **module resolution** logic that handles file path resolution, including support for **`tsconfig.json` path aliases**.
+  - [ ] Implement logic to traverse the AST and identify all **`import` and `require` statements**, ignoring path aliases
 - **Data Structure Generation**
   - [ ] Define the generic graph data structure (`nodes` and `links` arrays).
   - [ ] Implement logic to build the **`nodes` array**, using the **relative file path** as the unique `id`.
@@ -48,7 +49,7 @@ Use TypeScript and ESM
   - [ ] Develop the logic within the transformer to convert the generic structure into the **specific JSON format required by React Flow** (e.g., adding `position` properties, defining node types).
   - [ ] Integrate the Transformer Plugin into the Fastify API route handler.
 - **API Completion**
-  - [ ] Ensure the `/api/parse` endpoint sends the **transformed, ready-to-use JSON data** back in the response.
+  - [ ] Ensure the `/dependency-map` endpoint sends the **transformed, ready-to-use JSON data** back in the response.
   - [ ] Implement error handling for scenarios like "folder not found," "parsing errors," or "invalid input."
 
 ---
@@ -65,7 +66,7 @@ Use TypeScript and ESM
   - [ ] Create a form using Chakra UI for user input, including a text field for the **server-side project folder path**.
   - [ ] Implement the button and associated logic to handle the user submitting the path.
 - **Client-Server Communication**
-  - [ ] Implement the client-side function to send a **`POST` request** to the backend API (`/api/parse`) with the user-provided folder path.
+  - [ ] Implement the client-side function to send a **`POST` request** to the backend API (`/dependency-map`) with the user-provided folder path.
   - [ ] Implement logic to handle the API response (receiving the transformed JSON graph data).
   - [ ] Implement basic client-side error and loading state handling for the API request.
 - **Visualization**
@@ -73,3 +74,7 @@ Use TypeScript and ESM
   - [ ] Integrate **React Flow** within the Visualizer component.
   - [ ] Implement logic to consume the received JSON data and correctly render the **interactive dependency graph** (nodes and edges).
   - [ ] Implement initial styling and layout for the nodes and edges within React Flow.
+
+## Post MVP
+
+- [ ] Develop a **module resolution** logic that handles file path resolution, including support for **`tsconfig.json` path aliases**.
