@@ -1,8 +1,18 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Visualizer from '../components/Visualizer';
+
+// Hardcoded fetch/
+const data = await fetch('http://localhost:3001/dependency-map', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  // Change this to point to the folder you want to visualize
+  body: JSON.stringify({ folderPath: '../../../freeCodeCamp/api/' }),
+}).then(res => res.json());
 ---
 
 <Layout>
-  <Visualizer client:load />
+  <Visualizer client:load dependencyMap={data.dependencyMap} />
 </Layout>

@@ -1,6 +1,8 @@
 import Fastify from 'fastify';
 import cors from '@fastify/cors';
 
+import { parser } from './routes/parse.js';
+
 const fastify = Fastify({
   logger: true,
 });
@@ -15,23 +17,7 @@ fastify.get('/health', async () => {
   return { status: 'ok', timestamp: new Date().toISOString() };
 });
 
-// Parse endpoint - placeholder for now
-fastify.post('/api/parse', async (request, reply) => {
-  const { folderPath } = request.body as { folderPath: string };
-
-  if (!folderPath) {
-    reply.code(400);
-    return { error: 'folderPath is required' };
-  }
-
-  // TODO: Implement parsing logic
-  return {
-    message: 'Parser endpoint ready',
-    folderPath,
-    nodes: [],
-    links: [],
-  };
-});
+fastify.register(parser);
 
 // Start server
 const start = async () => {

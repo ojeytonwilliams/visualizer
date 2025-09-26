@@ -106,6 +106,7 @@ Sample Output:
 - [ ] Handle standard import resolution correctly. E.g. if file.ts imports thing.js, but only thing.ts exists, the source should be file.ts and the target thing.ts. Similarly cts, mts and so on.
 - [ ] Investigate the other import resolution algorithms (bun, bundlers etc. etc.)
 - [ ] Develop a **module resolution** logic that handles file path resolution, including support for **`tsconfig.json` path aliases**.
+- [ ] Handle [...] file segments e.g. src/pages/learn/daily-coding-challenge/[...].tsx
 
 - **Transformer Plugin Development**
   - [ ] Create the initial **Transformer Plugin** module.
