@@ -70,14 +70,10 @@ Sample Output:
   ]
 }
 ```
-  - [ ] Create a file-parser module that takes a `ScannedFile[]` array as input and returns an object conforming to the sample output. Subtasks:
-    - [ ] Implement logic to build the **`nodes` array**, using the **relative file path** as the unique `id`.
-    - [ ] Implement logic to build the **`links` array** based on resolved import/export relationships, using `source` (importer) and `target` (imported file) file paths.
-- **Transformer Plugin Development**
-  - [ ] Create the initial **Transformer Plugin** module.
-  - [ ] Implement the transformation function that accepts the **generic graph data structure**.
-  - [ ] Develop the logic within the transformer to convert the generic structure into the **specific JSON format required by React Flow** (e.g., adding `position` properties, defining node types).
-  - [ ] Integrate the Transformer Plugin into the Fastify API route handler.
+  - [x] Create a file-parser module that takes a `ScannedFile[]` array as input and returns an object conforming to the sample output. Subtasks:
+    - [x] Implement logic to build the **`nodes` array**, using the **relative file path** as the unique `id`.
+    - [x] Implement logic to build the **`links` array** based on resolved import/export relationships, using `source` (importer) and `target` (imported file) file paths.
+
 - **API Completion**
   - [ ] Ensure the `/dependency-map` endpoint sends the **transformed, ready-to-use JSON data** back in the response.
   - [ ] Implement error handling for scenarios like "folder not found," "parsing errors," or "invalid input."
@@ -110,3 +106,9 @@ Sample Output:
 - [ ] Handle standard import resolution correctly. E.g. if file.ts imports thing.js, but only thing.ts exists, the source should be file.ts and the target thing.ts. Similarly cts, mts and so on.
 - [ ] Investigate the other import resolution algorithms (bun, bundlers etc. etc.)
 - [ ] Develop a **module resolution** logic that handles file path resolution, including support for **`tsconfig.json` path aliases**.
+
+- **Transformer Plugin Development**
+  - [ ] Create the initial **Transformer Plugin** module.
+  - [ ] Implement the transformation function that accepts the **generic graph data structure**.
+  - [ ] Develop the logic within the transformer to convert the generic structure into the **specific JSON format required by React Flow** (e.g., adding `position` properties, defining node types).
+  - [ ] Integrate the Transformer Plugin into the Fastify API route handler.
