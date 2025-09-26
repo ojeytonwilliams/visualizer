@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { vol } from 'memfs';
-import { parse } from './file-parser.js';
+import { guessPossibleExtensions, parse } from './file-parser.js';
 import type { ScannedFile } from './scanner.js';
 
 // Mock fs to use memfs
@@ -13,6 +13,47 @@ describe('file-parser', () => {
   });
 
   describe('parse', () => {
+    // TODO: consider how to handle the case where both .ts and .js versions of
+    // a file exist. Is there a situation where you want to check both into
+    // source control?
+    it.todo(
+      'should throw if an import resolves to multiple files',
+      async () => {
+        vol.fromJSON({
+          '/project/src/app.ts': `
+          import { helper } from './utils/helper.js';
+        `,
+          '/project/src/utils/helper.ts': 'export const helper = () => {};',
+          '/project/src/utils/helper.js': 'export const helper = () => {};',
+        });
+
+        const scannedFiles: ScannedFile[] = [
+          {
+            rootDir: '/project',
+            relativePath: './src/app.ts',
+            extension: '.ts',
+            name: 'app.ts',
+          },
+          {
+            rootDir: '/project',
+            relativePath: './src/utils/helper.ts',
+            extension: '.ts',
+            name: 'helper.ts',
+          },
+          {
+            rootDir: '/project',
+            relativePath: './src/utils/helper.js',
+            extension: '.js',
+            name: 'helper.js',
+          },
+        ];
+
+        await expect(parse(scannedFiles)).rejects.toThrow(
+          'Import ./utils/helper.js in ./src/app.ts resolves to multiple files'
+        );
+      }
+    );
+
     it('should return empty nodes and links for empty input', async () => {
       const scannedFiles: ScannedFile[] = [];
 
@@ -117,16 +158,12 @@ describe('file-parser', () => {
       ]);
     });
 
-    it.todo('should handle relative imports with different path formats', async () => {
+    it('should handle .js imports of .ts files', async () => {
       vol.fromJSON({
         '/project/src/app.ts': `
           import { helper1 } from './utils/helper1.js';
-          import helper2 from './utils/helper2';
-          import { Component } from '../components/Component.tsx';
         `,
         '/project/src/utils/helper1.ts': 'export const helper1 = () => {};',
-        '/project/src/utils/helper2.ts': 'export default function helper2() {}',
-        '/project/components/Component.tsx': 'export function Component() {}',
       });
 
       const scannedFiles: ScannedFile[] = [
@@ -142,18 +179,6 @@ describe('file-parser', () => {
           extension: '.ts',
           name: 'helper1.ts',
         },
-        {
-          rootDir: '/project',
-          relativePath: './src/utils/helper2.ts',
-          extension: '.ts',
-          name: 'helper2.ts',
-        },
-        {
-          rootDir: '/project',
-          relativePath: './components/Component.tsx',
-          extension: '.tsx',
-          name: 'Component.tsx',
-        },
       ];
 
       const result = await parse(scannedFiles);
@@ -162,13 +187,36 @@ describe('file-parser', () => {
         source: './src/app.ts',
         target: './src/utils/helper1.ts',
       });
-      expect(result.links).toContainEqual({
-        source: './src/app.ts',
-        target: './src/utils/helper2.ts',
+    });
+
+    it('should handle .jsx imports of .tsx files', async () => {
+      vol.fromJSON({
+        '/project/src/app.tsx': `
+          import { Button } from './components/Button.jsx';
+        `,
+        '/project/src/components/Button.tsx': 'export const Button = () => {};',
       });
+
+      const scannedFiles: ScannedFile[] = [
+        {
+          rootDir: '/project',
+          relativePath: './src/app.tsx',
+          extension: '.tsx',
+          name: 'app.tsx',
+        },
+        {
+          rootDir: '/project',
+          relativePath: './src/components/Button.tsx',
+          extension: '.tsx',
+          name: 'Button.tsx',
+        },
+      ];
+
+      const result = await parse(scannedFiles);
+
       expect(result.links).toContainEqual({
-        source: './src/app.ts',
-        target: './components/Component.tsx',
+        source: './src/app.tsx',
+        target: './src/components/Button.tsx',
       });
     });
 
@@ -341,6 +389,46 @@ describe('file-parser', () => {
           source: './src/services/user.service.ts',
           target: './src/utils/database.ts',
         },
+      ]);
+    });
+  });
+
+  describe('guessPossibleExtensions', () => {
+    it('should return add .js and .ts extensions for ./file.js imports', () => {
+      const result = guessPossibleExtensions('./file.js');
+      expect(result).toEqual(['./file.js', './file.ts']);
+    });
+
+    it('should return add .jsx and .tsx extensions for ./file.jsx imports', () => {
+      const result = guessPossibleExtensions('./file.jsx');
+      expect(result).toEqual(['./file.jsx', './file.tsx']);
+    });
+
+    it('should return add .cjs and .cts extensions for ./file.cjs imports', () => {
+      const result = guessPossibleExtensions('./file.cjs');
+      expect(result).toEqual(['./file.cjs', './file.cts']);
+    });
+
+    it('should return add .mjs and .mts extensions for ./file.mjs imports', () => {
+      const result = guessPossibleExtensions('./file.mjs');
+      expect(result).toEqual(['./file.mjs', './file.mts']);
+    });
+
+    it('should return index.ts for directory imports like ./dir/', () => {
+      const result = guessPossibleExtensions('./dir/');
+      expect(result).toEqual(['./dir/index.ts']);
+    });
+
+    it('should not modify the rest of the path', () => {
+      const result = guessPossibleExtensions('./some/file.js');
+      expect(result).toEqual(['./some/file.js', './some/file.ts']);
+    });
+
+    it('should handle absolute paths', () => {
+      const result = guessPossibleExtensions('/absolute/path/file.jsx');
+      expect(result).toEqual([
+        '/absolute/path/file.jsx',
+        '/absolute/path/file.tsx',
       ]);
     });
   });

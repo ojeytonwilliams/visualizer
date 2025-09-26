@@ -18,6 +18,34 @@ export interface DependencyGraph {
 }
 
 /**
+ * Given an import path, guess possible file paths by changing extensions. TODO:
+ * figure out how to get Typescript's own resolution logic to do this.
+ * @param importPath - The import path to analyze
+ * @returns Array of possible file paths with different extensions
+ */
+export function guessPossibleExtensions(importPath: string): string[] {
+  const extensionMap = new Map([
+    ['.js', ['.js', '.ts']],
+    ['.jsx', ['.jsx', '.tsx']],
+    ['.mjs', ['.mjs', '.mts']],
+    ['.cjs', ['.cjs', '.cts']],
+  ]);
+
+  const ext = path.extname(importPath);
+
+  if (!ext) return [importPath + 'index.ts'];
+
+  const basename = path.basename(importPath, ext);
+  const dir = path.dirname(importPath);
+  const prefix = path.isAbsolute(importPath) ? '' : `.${path.sep}`;
+  return (
+    extensionMap
+      .get(ext)
+      ?.map(ext => prefix + path.join(dir, basename + ext)) ?? [importPath]
+  );
+}
+
+/**
  * Parse scanned files and generate a dependency graph data structure
  * @param scannedFiles - Array of scanned files from the scanner module
  * @returns Promise resolving to a dependency graph with nodes and links
@@ -62,11 +90,15 @@ export async function parse(
           continue;
         }
 
-        if (foundRelativePaths.has(importPath)) {
-          links.push({
-            source: file.relativePath,
-            target: importPath,
-          });
+        const possiblePaths = guessPossibleExtensions(importPath);
+
+        for (const possiblePath of possiblePaths) {
+          if (foundRelativePaths.has(possiblePath)) {
+            links.push({
+              source: file.relativePath,
+              target: possiblePath,
+            });
+          }
         }
       }
     } catch (error) {
