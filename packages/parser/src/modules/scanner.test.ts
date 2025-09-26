@@ -68,23 +68,21 @@ describe('Directory Scanner', () => {
 
       expect(files).toHaveLength(6);
       expect(files.map(f => f.relativePath).sort()).toEqual([
-        'src/app.tsx',
-        'src/components/Button.tsx',
-        'src/config.js',
-        'src/index.ts',
-        'src/types.jsx',
-        'src/utils/helpers.ts',
+        './src/app.tsx',
+        './src/components/Button.tsx',
+        './src/config.js',
+        './src/index.ts',
+        './src/types.jsx',
+        './src/utils/helpers.ts',
       ]);
     });
 
     it('should return correct file information', async () => {
       const files = await scanDirectory(testDir);
-      const indexFile = files.find(f => f.relativePath === 'src/index.ts');
+      const indexFile = files.find(f => f.relativePath === './src/index.ts');
 
       expect(indexFile).toBeDefined();
-      expect(indexFile!.absolutePath).toBe(
-        path.join(testDir, 'src', 'index.ts')
-      );
+      expect(indexFile!.rootDir).toBe(testDir);
       expect(indexFile!.extension).toBe('.ts');
       expect(indexFile!.name).toBe('index.ts');
     });
@@ -123,9 +121,9 @@ describe('Directory Scanner', () => {
 
       expect(nestedFiles.length).toBeGreaterThan(0);
       expect(files.map(f => f.relativePath)).toContain(
-        'src/components/Button.tsx'
+        './src/components/Button.tsx'
       );
-      expect(files.map(f => f.relativePath)).toContain('src/utils/helpers.ts');
+      expect(files.map(f => f.relativePath)).toContain('./src/utils/helpers.ts');
     });
 
     it('should handle empty directory', async () => {

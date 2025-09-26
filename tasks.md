@@ -14,6 +14,8 @@ Avoid mocking where possible, except for the filesystem which should be mocked b
 
 Use TypeScript and ESM
 
+When running tests pass --run e.g. pnpm test --run
+
 ## I. General Development Setup
 
 - **Project Initialization**
@@ -105,4 +107,6 @@ Sample Output:
 
 ## Post MVP
 
+- [ ] Handle standard import resolution correctly. E.g. if file.ts imports thing.js, but only thing.ts exists, the source should be file.ts and the target thing.ts. Similarly cts, mts and so on.
+- [ ] Investigate the other import resolution algorithms (bun, bundlers etc. etc.)
 - [ ] Develop a **module resolution** logic that handles file path resolution, including support for **`tsconfig.json` path aliases**.
