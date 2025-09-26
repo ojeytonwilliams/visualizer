@@ -33,7 +33,18 @@ export function guessPossibleExtensions(importPath: string): string[] {
 
   const ext = path.extname(importPath);
 
-  if (!ext) return [importPath + 'index.ts'];
+  if (!ext) {
+    const hasTrailingSep = importPath.endsWith(path.sep);
+
+    return hasTrailingSep
+      ? [importPath + 'index.ts', importPath + 'index.js']
+      : [
+          importPath + '.ts',
+          importPath + '.js',
+          importPath + path.sep + 'index.ts',
+          importPath + path.sep + 'index.js',
+        ];
+  }
 
   const basename = path.basename(importPath, ext);
   const dir = path.dirname(importPath);

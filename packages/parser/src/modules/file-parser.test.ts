@@ -391,6 +391,72 @@ describe('file-parser', () => {
         },
       ]);
     });
+
+    it('should handle CommonJS require statements in pure JS projects', async () => {
+      vol.fromJSON({
+        '/project/src/index.js': `
+          const { helper } = require('./utils/helper');
+          const config = require('./config');
+          
+          module.exports = { helper, config };
+        `,
+        '/project/src/utils/helper.js': `
+          const database = require('../database');
+          
+          function helper() {
+            return database.query();
+          }
+          
+          module.exports = { helper };
+        `,
+        '/project/src/database.js': `
+          module.exports = {
+            query: () => 'data'
+          };
+        `,
+        '/project/src/config.js': `
+          module.exports = {
+            apiUrl: 'http://localhost:3000'
+          };
+        `,
+      });
+
+      const scannedFiles: ScannedFile[] = [
+        {
+          rootDir: '/project',
+          relativePath: './src/index.js',
+          extension: '.js',
+          name: 'index.js',
+        },
+        {
+          rootDir: '/project',
+          relativePath: './src/utils/helper.js',
+          extension: '.js',
+          name: 'helper.js',
+        },
+        {
+          rootDir: '/project',
+          relativePath: './src/database.js',
+          extension: '.js',
+          name: 'database.js',
+        },
+        {
+          rootDir: '/project',
+          relativePath: './src/config.js',
+          extension: '.js',
+          name: 'config.js',
+        },
+      ];
+
+      const result = await parse(scannedFiles);
+
+      expect(result.nodes).toHaveLength(4);
+      expect(result.links).toEqual([
+        { source: './src/index.js', target: './src/utils/helper.js' },
+        { source: './src/index.js', target: './src/config.js' },
+        { source: './src/utils/helper.js', target: './src/database.js' },
+      ]);
+    });
   });
 
   describe('guessPossibleExtensions', () => {
@@ -414,9 +480,21 @@ describe('file-parser', () => {
       expect(result).toEqual(['./file.mjs', './file.mts']);
     });
 
-    it('should return index.ts for directory imports like ./dir/', () => {
+    it('should return index files for directory imports like ./dir/', () => {
       const result = guessPossibleExtensions('./dir/');
-      expect(result).toEqual(['./dir/index.ts']);
+      expect(result).toEqual(['./dir/index.ts', './dir/index.js']);
+    });
+
+    // This isn't quite correct, because the real resolution algorithm checks in
+    // a specific order, but this should work reasonably well for now.
+    it('should return /pain/index.ts, pain.ts and pain.js for directory imports like ./pain', () => {
+      const result = guessPossibleExtensions('./pain');
+      expect(result).toEqual([
+        './pain.ts',
+        './pain.js',
+        './pain/index.ts',
+        './pain/index.js',
+      ]);
     });
 
     it('should not modify the rest of the path', () => {
