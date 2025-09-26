@@ -1,0 +1,1775 @@
+{
+  "nodes": [
+    {
+      "id": "./__mocks__/exam-environment-exam.ts"
+    },
+    {
+      "id": "./__mocks__/exam.ts"
+    },
+    {
+      "id": "./src/app.ts"
+    },
+    {
+      "id": "./src/daily-coding-challenge/routes/daily-coding-challenge.test.ts"
+    },
+    {
+      "id": "./src/daily-coding-challenge/routes/daily-coding-challenge.ts"
+    },
+    {
+      "id": "./src/daily-coding-challenge/schemas/daily-coding-challenge.ts"
+    },
+    {
+      "id": "./src/daily-coding-challenge/schemas/index.ts"
+    },
+    {
+      "id": "./src/daily-coding-challenge/utils/helpers.ts"
+    },
+    {
+      "id": "./src/db/extensions.test.ts"
+    },
+    {
+      "id": "./src/db/prisma.ts"
+    },
+    {
+      "id": "./src/exam-environment/routes/exam-environment.test.ts"
+    },
+    {
+      "id": "./src/exam-environment/routes/exam-environment.ts"
+    },
+    {
+      "id": "./src/exam-environment/schemas/challenges.ts"
+    },
+    {
+      "id": "./src/exam-environment/schemas/exam-environment-exam-attempt.ts"
+    },
+    {
+      "id": "./src/exam-environment/schemas/exam-environment-exam-generated-exam.ts"
+    },
+    {
+      "id": "./src/exam-environment/schemas/exam-environment-exams.ts"
+    },
+    {
+      "id": "./src/exam-environment/schemas/index.ts"
+    },
+    {
+      "id": "./src/exam-environment/schemas/token-meta.ts"
+    },
+    {
+      "id": "./src/exam-environment/utils/errors.ts"
+    },
+    {
+      "id": "./src/exam-environment/utils/exam-environment.test.ts"
+    },
+    {
+      "id": "./src/exam-environment/utils/exam-environment.ts"
+    },
+    {
+      "id": "./src/instrument.ts"
+    },
+    {
+      "id": "./src/plugins/__fixtures__/user.ts"
+    },
+    {
+      "id": "./src/plugins/auth-dev.test.ts"
+    },
+    {
+      "id": "./src/plugins/auth-dev.ts"
+    },
+    {
+      "id": "./src/plugins/auth.test.ts"
+    },
+    {
+      "id": "./src/plugins/auth.ts"
+    },
+    {
+      "id": "./src/plugins/auth0.test.ts"
+    },
+    {
+      "id": "./src/plugins/auth0.ts"
+    },
+    {
+      "id": "./src/plugins/bouncer.test.ts"
+    },
+    {
+      "id": "./src/plugins/bouncer.ts"
+    },
+    {
+      "id": "./src/plugins/cookie-update.test.ts"
+    },
+    {
+      "id": "./src/plugins/cookie-update.ts"
+    },
+    {
+      "id": "./src/plugins/cookies.test.ts"
+    },
+    {
+      "id": "./src/plugins/cookies.ts"
+    },
+    {
+      "id": "./src/plugins/cors.test.ts"
+    },
+    {
+      "id": "./src/plugins/cors.ts"
+    },
+    {
+      "id": "./src/plugins/csrf.test.ts"
+    },
+    {
+      "id": "./src/plugins/csrf.ts"
+    },
+    {
+      "id": "./src/plugins/error-handling.test.ts"
+    },
+    {
+      "id": "./src/plugins/error-handling.ts"
+    },
+    {
+      "id": "./src/plugins/growth-book.test.ts"
+    },
+    {
+      "id": "./src/plugins/growth-book.ts"
+    },
+    {
+      "id": "./src/plugins/mail-providers/nodemailer.ts"
+    },
+    {
+      "id": "./src/plugins/mail-providers/ses.ts"
+    },
+    {
+      "id": "./src/plugins/mailer.test.ts"
+    },
+    {
+      "id": "./src/plugins/mailer.ts"
+    },
+    {
+      "id": "./src/plugins/not-found.test.ts"
+    },
+    {
+      "id": "./src/plugins/not-found.ts"
+    },
+    {
+      "id": "./src/plugins/redirect-with-message.test.ts"
+    },
+    {
+      "id": "./src/plugins/redirect-with-message.ts"
+    },
+    {
+      "id": "./src/plugins/security.ts"
+    },
+    {
+      "id": "./src/plugins/shadow-capture.ts"
+    },
+    {
+      "id": "./src/reset.d.ts"
+    },
+    {
+      "id": "./src/routes/helpers/auth-helpers.test.ts"
+    },
+    {
+      "id": "./src/routes/helpers/auth-helpers.ts"
+    },
+    {
+      "id": "./src/routes/helpers/certificate-utils.test.ts"
+    },
+    {
+      "id": "./src/routes/helpers/certificate-utils.ts"
+    },
+    {
+      "id": "./src/routes/helpers/challenge-helpers.test.ts"
+    },
+    {
+      "id": "./src/routes/helpers/challenge-helpers.ts"
+    },
+    {
+      "id": "./src/routes/helpers/is-restricted.ts"
+    },
+    {
+      "id": "./src/routes/helpers/user-utils.ts"
+    },
+    {
+      "id": "./src/routes/protected/certificate.test.ts"
+    },
+    {
+      "id": "./src/routes/protected/certificate.ts"
+    },
+    {
+      "id": "./src/routes/protected/challenge.test.ts"
+    },
+    {
+      "id": "./src/routes/protected/challenge.ts"
+    },
+    {
+      "id": "./src/routes/protected/donate.test.ts"
+    },
+    {
+      "id": "./src/routes/protected/donate.ts"
+    },
+    {
+      "id": "./src/routes/protected/index.ts"
+    },
+    {
+      "id": "./src/routes/protected/settings.test.ts"
+    },
+    {
+      "id": "./src/routes/protected/settings.ts"
+    },
+    {
+      "id": "./src/routes/protected/user.test.ts"
+    },
+    {
+      "id": "./src/routes/protected/user.ts"
+    },
+    {
+      "id": "./src/routes/public/auth-dev.ts"
+    },
+    {
+      "id": "./src/routes/public/auth.test.ts"
+    },
+    {
+      "id": "./src/routes/public/auth.ts"
+    },
+    {
+      "id": "./src/routes/public/certificate.test.ts"
+    },
+    {
+      "id": "./src/routes/public/certificate.ts"
+    },
+    {
+      "id": "./src/routes/public/deprecated-endpoints.test.ts"
+    },
+    {
+      "id": "./src/routes/public/deprecated-endpoints.ts"
+    },
+    {
+      "id": "./src/routes/public/deprecated-unsubscribe.test.ts"
+    },
+    {
+      "id": "./src/routes/public/deprecated-unsubscribe.ts"
+    },
+    {
+      "id": "./src/routes/public/donate.test.ts"
+    },
+    {
+      "id": "./src/routes/public/donate.ts"
+    },
+    {
+      "id": "./src/routes/public/email-subscription.test.ts"
+    },
+    {
+      "id": "./src/routes/public/email-subscription.ts"
+    },
+    {
+      "id": "./src/routes/public/index.ts"
+    },
+    {
+      "id": "./src/routes/public/sentry.ts"
+    },
+    {
+      "id": "./src/routes/public/signout.test.ts"
+    },
+    {
+      "id": "./src/routes/public/signout.ts"
+    },
+    {
+      "id": "./src/routes/public/status.test.ts"
+    },
+    {
+      "id": "./src/routes/public/status.ts"
+    },
+    {
+      "id": "./src/routes/public/user.test.ts"
+    },
+    {
+      "id": "./src/routes/public/user.ts"
+    },
+    {
+      "id": "./src/schema.test.ts"
+    },
+    {
+      "id": "./src/schemas.ts"
+    },
+    {
+      "id": "./src/schemas/certificate/cert-slug.ts"
+    },
+    {
+      "id": "./src/schemas/certificate/certificate-verify.ts"
+    },
+    {
+      "id": "./src/schemas/challenge/backend-challenge-completed.ts"
+    },
+    {
+      "id": "./src/schemas/challenge/coderoad-challenge-completed.ts"
+    },
+    {
+      "id": "./src/schemas/challenge/daily-coding-challenge-completed.ts"
+    },
+    {
+      "id": "./src/schemas/challenge/exam-challenge-completed.ts"
+    },
+    {
+      "id": "./src/schemas/challenge/exam.ts"
+    },
+    {
+      "id": "./src/schemas/challenge/modern-challenge-completed.ts"
+    },
+    {
+      "id": "./src/schemas/challenge/ms-trophy-challenge-completed.ts"
+    },
+    {
+      "id": "./src/schemas/challenge/project-completed.ts"
+    },
+    {
+      "id": "./src/schemas/challenge/save-challenge.ts"
+    },
+    {
+      "id": "./src/schemas/challenge/submit-quiz-attempt.ts"
+    },
+    {
+      "id": "./src/schemas/deprecated/index.ts"
+    },
+    {
+      "id": "./src/schemas/donate/add-donation.ts"
+    },
+    {
+      "id": "./src/schemas/donate/charge-stripe-card.ts"
+    },
+    {
+      "id": "./src/schemas/donate/charge-stripe.ts"
+    },
+    {
+      "id": "./src/schemas/donate/create-stripe-payment-intent.ts"
+    },
+    {
+      "id": "./src/schemas/donate/update-stripe-card.ts"
+    },
+    {
+      "id": "./src/schemas/email-subscription/resubscribe.ts"
+    },
+    {
+      "id": "./src/schemas/email-subscription/unsubscribe.ts"
+    },
+    {
+      "id": "./src/schemas/sentry/event.ts"
+    },
+    {
+      "id": "./src/schemas/settings/confirm-email.ts"
+    },
+    {
+      "id": "./src/schemas/settings/update-my-about.ts"
+    },
+    {
+      "id": "./src/schemas/settings/update-my-classroom-mode.ts"
+    },
+    {
+      "id": "./src/schemas/settings/update-my-email.ts"
+    },
+    {
+      "id": "./src/schemas/settings/update-my-honesty.ts"
+    },
+    {
+      "id": "./src/schemas/settings/update-my-keyboard-shortcuts.ts"
+    },
+    {
+      "id": "./src/schemas/settings/update-my-portfolio.ts"
+    },
+    {
+      "id": "./src/schemas/settings/update-my-privacy-terms.ts"
+    },
+    {
+      "id": "./src/schemas/settings/update-my-profile-ui.ts"
+    },
+    {
+      "id": "./src/schemas/settings/update-my-quincy-email.ts"
+    },
+    {
+      "id": "./src/schemas/settings/update-my-socials.ts"
+    },
+    {
+      "id": "./src/schemas/settings/update-my-theme.ts"
+    },
+    {
+      "id": "./src/schemas/settings/update-my-username.ts"
+    },
+    {
+      "id": "./src/schemas/types.ts"
+    },
+    {
+      "id": "./src/schemas/user/delete-ms-username.ts"
+    },
+    {
+      "id": "./src/schemas/user/delete-my-account.ts"
+    },
+    {
+      "id": "./src/schemas/user/delete-user-token.ts"
+    },
+    {
+      "id": "./src/schemas/user/exam-environment-token.ts"
+    },
+    {
+      "id": "./src/schemas/user/get-session-user.ts"
+    },
+    {
+      "id": "./src/schemas/user/post-ms-username.ts"
+    },
+    {
+      "id": "./src/schemas/user/report-user.ts"
+    },
+    {
+      "id": "./src/schemas/user/reset-my-progress.ts"
+    },
+    {
+      "id": "./src/schemas/user/submit-survey.ts"
+    },
+    {
+      "id": "./src/schemas/users/exists.ts"
+    },
+    {
+      "id": "./src/schemas/users/get-public-profile.ts"
+    },
+    {
+      "id": "./src/server.test.ts"
+    },
+    {
+      "id": "./src/server.ts"
+    },
+    {
+      "id": "./src/utils/allowed-origins.ts"
+    },
+    {
+      "id": "./src/utils/common-challenge-functions.ts"
+    },
+    {
+      "id": "./src/utils/create-user.ts"
+    },
+    {
+      "id": "./src/utils/email-templates.ts"
+    },
+    {
+      "id": "./src/utils/env.ts"
+    },
+    {
+      "id": "./src/utils/error-formatting.ts"
+    },
+    {
+      "id": "./src/utils/exam-schemas.ts"
+    },
+    {
+      "id": "./src/utils/exam-types.ts"
+    },
+    {
+      "id": "./src/utils/exam.test.ts"
+    },
+    {
+      "id": "./src/utils/exam.ts"
+    },
+    {
+      "id": "./src/utils/get-challenges.test.ts"
+    },
+    {
+      "id": "./src/utils/get-challenges.ts"
+    },
+    {
+      "id": "./src/utils/ids.ts"
+    },
+    {
+      "id": "./src/utils/index.test.ts"
+    },
+    {
+      "id": "./src/utils/index.ts"
+    },
+    {
+      "id": "./src/utils/logger.ts"
+    },
+    {
+      "id": "./src/utils/normalize.test.ts"
+    },
+    {
+      "id": "./src/utils/normalize.ts"
+    },
+    {
+      "id": "./src/utils/progress.test.ts"
+    },
+    {
+      "id": "./src/utils/progress.ts"
+    },
+    {
+      "id": "./src/utils/redirection.test.ts"
+    },
+    {
+      "id": "./src/utils/redirection.ts"
+    },
+    {
+      "id": "./src/utils/tokens.test.ts"
+    },
+    {
+      "id": "./src/utils/tokens.ts"
+    },
+    {
+      "id": "./src/utils/validate-donation.test.ts"
+    },
+    {
+      "id": "./src/utils/validate-donation.ts"
+    },
+    {
+      "id": "./src/utils/validation.test.ts"
+    },
+    {
+      "id": "./src/utils/validation.ts"
+    },
+    {
+      "id": "./tools/exam-environment/generate/deprecate.ts"
+    },
+    {
+      "id": "./tools/exam-environment/generate/index.ts"
+    },
+    {
+      "id": "./tools/exam-environment/generate/insert.ts"
+    },
+    {
+      "id": "./tools/exam-environment/seed/index.ts"
+    },
+    {
+      "id": "./tools/exam-environment/test/index.ts"
+    },
+    {
+      "id": "./vitest.utils.test.ts"
+    },
+    {
+      "id": "./vitest.utils.ts"
+    }
+  ],
+  "links": [
+    {
+      "source": "./__mocks__/exam-environment-exam.ts",
+      "target": "./vitest.utils.ts"
+    },
+    {
+      "source": "./__mocks__/exam-environment-exam.ts",
+      "target": "./src/exam-environment/schemas/index.ts"
+    },
+    {
+      "source": "./src/app.ts",
+      "target": "./src/db/prisma.ts"
+    },
+    {
+      "source": "./src/app.ts",
+      "target": "./src/plugins/cookies.ts"
+    },
+    {
+      "source": "./src/app.ts",
+      "target": "./src/plugins/cors.ts"
+    },
+    {
+      "source": "./src/app.ts",
+      "target": "./src/plugins/mail-providers/nodemailer.ts"
+    },
+    {
+      "source": "./src/app.ts",
+      "target": "./src/plugins/mail-providers/ses.ts"
+    },
+    {
+      "source": "./src/app.ts",
+      "target": "./src/plugins/mailer.ts"
+    },
+    {
+      "source": "./src/app.ts",
+      "target": "./src/plugins/redirect-with-message.ts"
+    },
+    {
+      "source": "./src/app.ts",
+      "target": "./src/plugins/security.ts"
+    },
+    {
+      "source": "./src/app.ts",
+      "target": "./src/plugins/auth.ts"
+    },
+    {
+      "source": "./src/app.ts",
+      "target": "./src/plugins/bouncer.ts"
+    },
+    {
+      "source": "./src/app.ts",
+      "target": "./src/plugins/error-handling.ts"
+    },
+    {
+      "source": "./src/app.ts",
+      "target": "./src/plugins/csrf.ts"
+    },
+    {
+      "source": "./src/app.ts",
+      "target": "./src/plugins/not-found.ts"
+    },
+    {
+      "source": "./src/app.ts",
+      "target": "./src/plugins/shadow-capture.ts"
+    },
+    {
+      "source": "./src/app.ts",
+      "target": "./src/plugins/growth-book.ts"
+    },
+    {
+      "source": "./src/app.ts",
+      "target": "./src/routes/public/index.ts"
+    },
+    {
+      "source": "./src/app.ts",
+      "target": "./src/routes/protected/index.ts"
+    },
+    {
+      "source": "./src/app.ts",
+      "target": "./src/utils/env.ts"
+    },
+    {
+      "source": "./src/app.ts",
+      "target": "./src/utils/validation.ts"
+    },
+    {
+      "source": "./src/app.ts",
+      "target": "./src/utils/logger.ts"
+    },
+    {
+      "source": "./src/app.ts",
+      "target": "./src/exam-environment/routes/exam-environment.ts"
+    },
+    {
+      "source": "./src/app.ts",
+      "target": "./src/daily-coding-challenge/routes/daily-coding-challenge.ts"
+    },
+    {
+      "source": "./src/daily-coding-challenge/routes/daily-coding-challenge.test.ts",
+      "target": "./vitest.utils.ts"
+    },
+    {
+      "source": "./src/daily-coding-challenge/routes/daily-coding-challenge.test.ts",
+      "target": "./src/daily-coding-challenge/utils/helpers.ts"
+    },
+    {
+      "source": "./src/daily-coding-challenge/routes/daily-coding-challenge.ts",
+      "target": "./src/daily-coding-challenge/schemas/index.ts"
+    },
+    {
+      "source": "./src/daily-coding-challenge/routes/daily-coding-challenge.ts",
+      "target": "./src/daily-coding-challenge/utils/helpers.ts"
+    },
+    {
+      "source": "./src/daily-coding-challenge/schemas/index.ts",
+      "target": "./src/daily-coding-challenge/schemas/daily-coding-challenge.ts"
+    },
+    {
+      "source": "./src/db/extensions.test.ts",
+      "target": "./vitest.utils.ts"
+    },
+    {
+      "source": "./src/db/extensions.test.ts",
+      "target": "./src/utils/create-user.ts"
+    },
+    {
+      "source": "./src/db/prisma.ts",
+      "target": "./src/utils/env.ts"
+    },
+    {
+      "source": "./src/exam-environment/routes/exam-environment.test.ts",
+      "target": "./vitest.utils.ts"
+    },
+    {
+      "source": "./src/exam-environment/routes/exam-environment.test.ts",
+      "target": "./src/exam-environment/schemas/index.ts"
+    },
+    {
+      "source": "./src/exam-environment/routes/exam-environment.test.ts",
+      "target": "./__mocks__/exam-environment-exam.ts"
+    },
+    {
+      "source": "./src/exam-environment/routes/exam-environment.test.ts",
+      "target": "./src/exam-environment/utils/exam-environment.ts"
+    },
+    {
+      "source": "./src/exam-environment/routes/exam-environment.test.ts",
+      "target": "./src/utils/env.ts"
+    },
+    {
+      "source": "./src/exam-environment/routes/exam-environment.test.ts",
+      "target": "./src/exam-environment/utils/exam-environment.ts"
+    },
+    {
+      "source": "./src/exam-environment/routes/exam-environment.ts",
+      "target": "./src/exam-environment/schemas/index.ts"
+    },
+    {
+      "source": "./src/exam-environment/routes/exam-environment.ts",
+      "target": "./src/utils/index.ts"
+    },
+    {
+      "source": "./src/exam-environment/routes/exam-environment.ts",
+      "target": "./src/utils/env.ts"
+    },
+    {
+      "source": "./src/exam-environment/routes/exam-environment.ts",
+      "target": "./src/exam-environment/utils/exam-environment.ts"
+    },
+    {
+      "source": "./src/exam-environment/routes/exam-environment.ts",
+      "target": "./src/exam-environment/utils/errors.ts"
+    },
+    {
+      "source": "./src/exam-environment/routes/exam-environment.ts",
+      "target": "./src/utils/validation.ts"
+    },
+    {
+      "source": "./src/exam-environment/schemas/exam-environment-exam-attempt.ts",
+      "target": "./src/exam-environment/utils/errors.ts"
+    },
+    {
+      "source": "./src/exam-environment/schemas/exam-environment-exam-generated-exam.ts",
+      "target": "./src/exam-environment/utils/errors.ts"
+    },
+    {
+      "source": "./src/exam-environment/schemas/exam-environment-exams.ts",
+      "target": "./src/exam-environment/utils/errors.ts"
+    },
+    {
+      "source": "./src/exam-environment/schemas/index.ts",
+      "target": "./src/exam-environment/schemas/exam-environment-exam-attempt.ts"
+    },
+    {
+      "source": "./src/exam-environment/schemas/index.ts",
+      "target": "./src/exam-environment/schemas/exam-environment-exam-generated-exam.ts"
+    },
+    {
+      "source": "./src/exam-environment/schemas/index.ts",
+      "target": "./src/exam-environment/schemas/token-meta.ts"
+    },
+    {
+      "source": "./src/exam-environment/schemas/index.ts",
+      "target": "./src/exam-environment/schemas/exam-environment-exams.ts"
+    },
+    {
+      "source": "./src/exam-environment/schemas/index.ts",
+      "target": "./src/exam-environment/schemas/challenges.ts"
+    },
+    {
+      "source": "./src/exam-environment/schemas/token-meta.ts",
+      "target": "./src/exam-environment/utils/errors.ts"
+    },
+    {
+      "source": "./src/exam-environment/utils/exam-environment.test.ts",
+      "target": "./__mocks__/exam-environment-exam.ts"
+    },
+    {
+      "source": "./src/exam-environment/utils/exam-environment.test.ts",
+      "target": "./src/exam-environment/schemas/index.ts"
+    },
+    {
+      "source": "./src/exam-environment/utils/exam-environment.test.ts",
+      "target": "./vitest.utils.ts"
+    },
+    {
+      "source": "./src/exam-environment/utils/exam-environment.test.ts",
+      "target": "./src/exam-environment/utils/exam-environment.ts"
+    },
+    {
+      "source": "./src/exam-environment/utils/exam-environment.ts",
+      "target": "./src/exam-environment/schemas/index.ts"
+    },
+    {
+      "source": "./src/exam-environment/utils/exam-environment.ts",
+      "target": "./src/utils/index.ts"
+    },
+    {
+      "source": "./src/exam-environment/utils/exam-environment.ts",
+      "target": "./src/exam-environment/utils/errors.ts"
+    },
+    {
+      "source": "./src/instrument.ts",
+      "target": "./src/utils/env.ts"
+    },
+    {
+      "source": "./src/plugins/__fixtures__/user.ts",
+      "target": "./src/utils/create-user.ts"
+    },
+    {
+      "source": "./src/plugins/auth-dev.test.ts",
+      "target": "./vitest.utils.ts"
+    },
+    {
+      "source": "./src/plugins/auth-dev.test.ts",
+      "target": "./src/utils/env.ts"
+    },
+    {
+      "source": "./src/plugins/auth-dev.test.ts",
+      "target": "./src/plugins/auth-dev.ts"
+    },
+    {
+      "source": "./src/plugins/auth-dev.test.ts",
+      "target": "./src/db/prisma.ts"
+    },
+    {
+      "source": "./src/plugins/auth-dev.test.ts",
+      "target": "./src/plugins/auth.ts"
+    },
+    {
+      "source": "./src/plugins/auth-dev.test.ts",
+      "target": "./src/plugins/cookies.ts"
+    },
+    {
+      "source": "./src/plugins/auth-dev.test.ts",
+      "target": "./src/plugins/__fixtures__/user.ts"
+    },
+    {
+      "source": "./src/plugins/auth-dev.ts",
+      "target": "./src/utils/redirection.ts"
+    },
+    {
+      "source": "./src/plugins/auth-dev.ts",
+      "target": "./src/routes/helpers/auth-helpers.ts"
+    },
+    {
+      "source": "./src/plugins/auth-dev.ts",
+      "target": "./src/utils/tokens.ts"
+    },
+    {
+      "source": "./src/plugins/auth.test.ts",
+      "target": "./src/utils/env.ts"
+    },
+    {
+      "source": "./src/plugins/auth.test.ts",
+      "target": "./src/utils/tokens.ts"
+    },
+    {
+      "source": "./src/plugins/auth.test.ts",
+      "target": "./src/plugins/cookies.ts"
+    },
+    {
+      "source": "./src/plugins/auth.test.ts",
+      "target": "./src/plugins/auth.ts"
+    },
+    {
+      "source": "./src/plugins/auth.ts",
+      "target": "./src/utils/env.ts"
+    },
+    {
+      "source": "./src/plugins/auth.ts",
+      "target": "./src/utils/tokens.ts"
+    },
+    {
+      "source": "./src/plugins/auth.ts",
+      "target": "./src/exam-environment/utils/errors.ts"
+    },
+    {
+      "source": "./src/plugins/auth0.test.ts",
+      "target": "./src/utils/create-user.ts"
+    },
+    {
+      "source": "./src/plugins/auth0.test.ts",
+      "target": "./src/utils/env.ts"
+    },
+    {
+      "source": "./src/plugins/auth0.test.ts",
+      "target": "./src/db/prisma.ts"
+    },
+    {
+      "source": "./src/plugins/auth0.test.ts",
+      "target": "./src/plugins/cookies.ts"
+    },
+    {
+      "source": "./src/plugins/auth0.test.ts",
+      "target": "./src/plugins/auth0.ts"
+    },
+    {
+      "source": "./src/plugins/auth0.test.ts",
+      "target": "./src/plugins/redirect-with-message.ts"
+    },
+    {
+      "source": "./src/plugins/auth0.test.ts",
+      "target": "./src/plugins/auth.ts"
+    },
+    {
+      "source": "./src/plugins/auth0.test.ts",
+      "target": "./src/plugins/bouncer.ts"
+    },
+    {
+      "source": "./src/plugins/auth0.test.ts",
+      "target": "./src/plugins/__fixtures__/user.ts"
+    },
+    {
+      "source": "./src/plugins/auth0.ts",
+      "target": "./src/utils/env.ts"
+    },
+    {
+      "source": "./src/plugins/auth0.ts",
+      "target": "./src/routes/helpers/auth-helpers.ts"
+    },
+    {
+      "source": "./src/plugins/auth0.ts",
+      "target": "./src/utils/tokens.ts"
+    },
+    {
+      "source": "./src/plugins/auth0.ts",
+      "target": "./src/utils/redirection.ts"
+    },
+    {
+      "source": "./src/plugins/bouncer.test.ts",
+      "target": "./src/utils/env.ts"
+    },
+    {
+      "source": "./src/plugins/bouncer.test.ts",
+      "target": "./src/plugins/bouncer.ts"
+    },
+    {
+      "source": "./src/plugins/bouncer.test.ts",
+      "target": "./src/plugins/auth.ts"
+    },
+    {
+      "source": "./src/plugins/bouncer.test.ts",
+      "target": "./src/plugins/cookies.ts"
+    },
+    {
+      "source": "./src/plugins/bouncer.test.ts",
+      "target": "./src/plugins/redirect-with-message.ts"
+    },
+    {
+      "source": "./src/plugins/bouncer.ts",
+      "target": "./src/utils/redirection.ts"
+    },
+    {
+      "source": "./src/plugins/cookie-update.test.ts",
+      "target": "./src/plugins/cookies.ts"
+    },
+    {
+      "source": "./src/plugins/cookie-update.test.ts",
+      "target": "./src/plugins/cookie-update.ts"
+    },
+    {
+      "source": "./src/plugins/cookie-update.ts",
+      "target": "./src/plugins/cookies.ts"
+    },
+    {
+      "source": "./src/plugins/cookies.test.ts",
+      "target": "./src/utils/env.ts"
+    },
+    {
+      "source": "./src/plugins/cookies.test.ts",
+      "target": "./src/plugins/cookies.ts"
+    },
+    {
+      "source": "./src/plugins/cookies.ts",
+      "target": "./src/utils/env.ts"
+    },
+    {
+      "source": "./src/plugins/cookies.ts",
+      "target": "./src/plugins/csrf.ts"
+    },
+    {
+      "source": "./src/plugins/cors.test.ts",
+      "target": "./src/plugins/cors.ts"
+    },
+    {
+      "source": "./src/plugins/cors.ts",
+      "target": "./src/utils/env.ts"
+    },
+    {
+      "source": "./src/plugins/cors.ts",
+      "target": "./src/utils/allowed-origins.ts"
+    },
+    {
+      "source": "./src/plugins/csrf.test.ts",
+      "target": "./src/utils/env.ts"
+    },
+    {
+      "source": "./src/plugins/csrf.test.ts",
+      "target": "./src/plugins/cookies.ts"
+    },
+    {
+      "source": "./src/plugins/csrf.test.ts",
+      "target": "./src/plugins/csrf.ts"
+    },
+    {
+      "source": "./src/plugins/error-handling.test.ts",
+      "target": "./src/plugins/error-handling.ts"
+    },
+    {
+      "source": "./src/plugins/error-handling.test.ts",
+      "target": "./src/plugins/redirect-with-message.ts"
+    },
+    {
+      "source": "./src/plugins/error-handling.ts",
+      "target": "./src/utils/redirection.ts"
+    },
+    {
+      "source": "./src/plugins/growth-book.test.ts",
+      "target": "./src/plugins/growth-book.ts"
+    },
+    {
+      "source": "./src/plugins/growth-book.ts",
+      "target": "./src/utils/env.ts"
+    },
+    {
+      "source": "./src/plugins/mail-providers/nodemailer.ts",
+      "target": "./src/plugins/mailer.ts"
+    },
+    {
+      "source": "./src/plugins/mail-providers/nodemailer.ts",
+      "target": "./src/utils/env.ts"
+    },
+    {
+      "source": "./src/plugins/mail-providers/ses.ts",
+      "target": "./src/plugins/mailer.ts"
+    },
+    {
+      "source": "./src/plugins/mail-providers/ses.ts",
+      "target": "./src/utils/env.ts"
+    },
+    {
+      "source": "./src/plugins/mailer.test.ts",
+      "target": "./src/plugins/mailer.ts"
+    },
+    {
+      "source": "./src/plugins/not-found.test.ts",
+      "target": "./src/plugins/not-found.ts"
+    },
+    {
+      "source": "./src/plugins/not-found.test.ts",
+      "target": "./src/plugins/redirect-with-message.ts"
+    },
+    {
+      "source": "./src/plugins/not-found.ts",
+      "target": "./src/utils/redirection.ts"
+    },
+    {
+      "source": "./src/plugins/redirect-with-message.test.ts",
+      "target": "./src/plugins/redirect-with-message.ts"
+    },
+    {
+      "source": "./src/plugins/security.ts",
+      "target": "./src/utils/env.ts"
+    },
+    {
+      "source": "./src/routes/helpers/auth-helpers.test.ts",
+      "target": "./src/db/prisma.ts"
+    },
+    {
+      "source": "./src/routes/helpers/auth-helpers.test.ts",
+      "target": "./src/utils/create-user.ts"
+    },
+    {
+      "source": "./src/routes/helpers/auth-helpers.test.ts",
+      "target": "./vitest.utils.ts"
+    },
+    {
+      "source": "./src/routes/helpers/auth-helpers.test.ts",
+      "target": "./src/routes/helpers/auth-helpers.ts"
+    },
+    {
+      "source": "./src/routes/helpers/auth-helpers.ts",
+      "target": "./src/utils/create-user.ts"
+    },
+    {
+      "source": "./src/routes/helpers/certificate-utils.test.ts",
+      "target": "./src/routes/helpers/certificate-utils.ts"
+    },
+    {
+      "source": "./src/routes/helpers/challenge-helpers.test.ts",
+      "target": "./vitest.utils.ts"
+    },
+    {
+      "source": "./src/routes/helpers/challenge-helpers.test.ts",
+      "target": "./src/routes/helpers/challenge-helpers.ts"
+    },
+    {
+      "source": "./src/routes/protected/donate.test.ts",
+      "target": "./vitest.utils.ts"
+    },
+    {
+      "source": "./src/routes/protected/donate.test.ts",
+      "target": "./src/utils/create-user.ts"
+    },
+    {
+      "source": "./src/routes/protected/index.ts",
+      "target": "./src/routes/protected/certificate.ts"
+    },
+    {
+      "source": "./src/routes/protected/index.ts",
+      "target": "./src/routes/protected/challenge.ts"
+    },
+    {
+      "source": "./src/routes/protected/index.ts",
+      "target": "./src/routes/protected/donate.ts"
+    },
+    {
+      "source": "./src/routes/protected/index.ts",
+      "target": "./src/routes/protected/settings.ts"
+    },
+    {
+      "source": "./src/routes/protected/index.ts",
+      "target": "./src/routes/protected/user.ts"
+    },
+    {
+      "source": "./src/routes/protected/settings.test.ts",
+      "target": "./vitest.utils.ts"
+    },
+    {
+      "source": "./src/routes/protected/settings.test.ts",
+      "target": "./src/plugins/redirect-with-message.ts"
+    },
+    {
+      "source": "./src/routes/protected/settings.test.ts",
+      "target": "./src/utils/create-user.ts"
+    },
+    {
+      "source": "./src/routes/protected/settings.test.ts",
+      "target": "./src/utils/env.ts"
+    },
+    {
+      "source": "./src/routes/protected/settings.test.ts",
+      "target": "./src/routes/protected/settings.ts"
+    },
+    {
+      "source": "./src/routes/protected/user.test.ts",
+      "target": "./src/utils/create-user.ts"
+    },
+    {
+      "source": "./src/routes/protected/user.test.ts",
+      "target": "./vitest.utils.ts"
+    },
+    {
+      "source": "./src/routes/protected/user.test.ts",
+      "target": "./src/utils/env.ts"
+    },
+    {
+      "source": "./src/routes/protected/user.test.ts",
+      "target": "./__mocks__/exam-environment-exam.ts"
+    },
+    {
+      "source": "./src/routes/protected/user.test.ts",
+      "target": "./src/routes/protected/user.ts"
+    },
+    {
+      "source": "./src/routes/protected/user.ts",
+      "target": "./src/schemas.ts"
+    },
+    {
+      "source": "./src/routes/protected/user.ts",
+      "target": "./src/exam-environment/schemas/index.ts"
+    },
+    {
+      "source": "./src/routes/protected/user.ts",
+      "target": "./src/utils/create-user.ts"
+    },
+    {
+      "source": "./src/routes/protected/user.ts",
+      "target": "./src/utils/ids.ts"
+    },
+    {
+      "source": "./src/routes/protected/user.ts",
+      "target": "./src/utils/tokens.ts"
+    },
+    {
+      "source": "./src/routes/protected/user.ts",
+      "target": "./src/utils/validation.ts"
+    },
+    {
+      "source": "./src/routes/protected/user.ts",
+      "target": "./src/utils/email-templates.ts"
+    },
+    {
+      "source": "./src/routes/protected/user.ts",
+      "target": "./src/routes/helpers/user-utils.ts"
+    },
+    {
+      "source": "./src/routes/protected/user.ts",
+      "target": "./src/utils/normalize.ts"
+    },
+    {
+      "source": "./src/routes/protected/user.ts",
+      "target": "./src/utils/index.ts"
+    },
+    {
+      "source": "./src/routes/protected/user.ts",
+      "target": "./src/utils/progress.ts"
+    },
+    {
+      "source": "./src/routes/protected/user.ts",
+      "target": "./src/utils/env.ts"
+    },
+    {
+      "source": "./src/routes/protected/user.ts",
+      "target": "./src/exam-environment/routes/exam-environment.ts"
+    },
+    {
+      "source": "./src/routes/protected/user.ts",
+      "target": "./src/exam-environment/utils/errors.ts"
+    },
+    {
+      "source": "./src/routes/public/auth-dev.ts",
+      "target": "./src/plugins/auth-dev.ts"
+    },
+    {
+      "source": "./src/routes/public/auth.test.ts",
+      "target": "./vitest.utils.ts"
+    },
+    {
+      "source": "./src/routes/public/auth.test.ts",
+      "target": "./src/utils/env.ts"
+    },
+    {
+      "source": "./src/routes/public/auth.ts",
+      "target": "./src/utils/env.ts"
+    },
+    {
+      "source": "./src/routes/public/auth.ts",
+      "target": "./src/plugins/auth0.ts"
+    },
+    {
+      "source": "./src/routes/public/auth.ts",
+      "target": "./src/utils/tokens.ts"
+    },
+    {
+      "source": "./src/routes/public/auth.ts",
+      "target": "./src/routes/helpers/auth-helpers.ts"
+    },
+    {
+      "source": "./src/routes/public/certificate.test.ts",
+      "target": "./vitest.utils.ts"
+    },
+    {
+      "source": "./src/routes/public/certificate.test.ts",
+      "target": "./src/routes/helpers/certificate-utils.ts"
+    },
+    {
+      "source": "./src/routes/public/deprecated-endpoints.test.ts",
+      "target": "./vitest.utils.ts"
+    },
+    {
+      "source": "./src/routes/public/deprecated-endpoints.test.ts",
+      "target": "./src/routes/public/deprecated-endpoints.ts"
+    },
+    {
+      "source": "./src/routes/public/deprecated-endpoints.ts",
+      "target": "./src/schemas.ts"
+    },
+    {
+      "source": "./src/routes/public/deprecated-unsubscribe.test.ts",
+      "target": "./vitest.utils.ts"
+    },
+    {
+      "source": "./src/routes/public/deprecated-unsubscribe.test.ts",
+      "target": "./src/routes/public/deprecated-unsubscribe.ts"
+    },
+    {
+      "source": "./src/routes/public/deprecated-unsubscribe.ts",
+      "target": "./src/utils/redirection.ts"
+    },
+    {
+      "source": "./src/routes/public/donate.test.ts",
+      "target": "./vitest.utils.ts"
+    },
+    {
+      "source": "./src/routes/public/email-subscription.test.ts",
+      "target": "./vitest.utils.ts"
+    },
+    {
+      "source": "./src/routes/public/email-subscription.test.ts",
+      "target": "./src/utils/env.ts"
+    },
+    {
+      "source": "./src/routes/public/email-subscription.test.ts",
+      "target": "./src/utils/create-user.ts"
+    },
+    {
+      "source": "./src/routes/public/email-subscription.ts",
+      "target": "./src/schemas.ts"
+    },
+    {
+      "source": "./src/routes/public/email-subscription.ts",
+      "target": "./src/utils/redirection.ts"
+    },
+    {
+      "source": "./src/routes/public/index.ts",
+      "target": "./src/routes/public/auth-dev.ts"
+    },
+    {
+      "source": "./src/routes/public/index.ts",
+      "target": "./src/routes/public/auth.ts"
+    },
+    {
+      "source": "./src/routes/public/index.ts",
+      "target": "./src/routes/public/certificate.ts"
+    },
+    {
+      "source": "./src/routes/public/index.ts",
+      "target": "./src/routes/public/deprecated-endpoints.ts"
+    },
+    {
+      "source": "./src/routes/public/index.ts",
+      "target": "./src/routes/public/deprecated-unsubscribe.ts"
+    },
+    {
+      "source": "./src/routes/public/index.ts",
+      "target": "./src/routes/public/donate.ts"
+    },
+    {
+      "source": "./src/routes/public/index.ts",
+      "target": "./src/routes/public/email-subscription.ts"
+    },
+    {
+      "source": "./src/routes/public/index.ts",
+      "target": "./src/routes/public/signout.ts"
+    },
+    {
+      "source": "./src/routes/public/index.ts",
+      "target": "./src/routes/public/status.ts"
+    },
+    {
+      "source": "./src/routes/public/index.ts",
+      "target": "./src/routes/public/user.ts"
+    },
+    {
+      "source": "./src/routes/public/index.ts",
+      "target": "./src/routes/public/sentry.ts"
+    },
+    {
+      "source": "./src/routes/public/sentry.ts",
+      "target": "./src/utils/index.ts"
+    },
+    {
+      "source": "./src/routes/public/sentry.ts",
+      "target": "./src/schemas.ts"
+    },
+    {
+      "source": "./src/routes/public/signout.test.ts",
+      "target": "./vitest.utils.ts"
+    },
+    {
+      "source": "./src/routes/public/signout.test.ts",
+      "target": "./src/utils/env.ts"
+    },
+    {
+      "source": "./src/routes/public/signout.ts",
+      "target": "./src/utils/redirection.ts"
+    },
+    {
+      "source": "./src/routes/public/status.test.ts",
+      "target": "./vitest.utils.ts"
+    },
+    {
+      "source": "./src/routes/public/status.test.ts",
+      "target": "./src/utils/env.ts"
+    },
+    {
+      "source": "./src/routes/public/status.ts",
+      "target": "./src/utils/env.ts"
+    },
+    {
+      "source": "./src/routes/public/user.test.ts",
+      "target": "./src/utils/create-user.ts"
+    },
+    {
+      "source": "./src/routes/public/user.test.ts",
+      "target": "./vitest.utils.ts"
+    },
+    {
+      "source": "./src/routes/public/user.test.ts",
+      "target": "./src/routes/public/user.ts"
+    },
+    {
+      "source": "./src/schema.test.ts",
+      "target": "./src/schemas.ts"
+    },
+    {
+      "source": "./src/schemas.ts",
+      "target": "./src/schemas/users/get-public-profile.ts"
+    },
+    {
+      "source": "./src/schemas.ts",
+      "target": "./src/schemas/users/exists.ts"
+    },
+    {
+      "source": "./src/schemas.ts",
+      "target": "./src/schemas/certificate/cert-slug.ts"
+    },
+    {
+      "source": "./src/schemas.ts",
+      "target": "./src/schemas/certificate/certificate-verify.ts"
+    },
+    {
+      "source": "./src/schemas.ts",
+      "target": "./src/schemas/challenge/backend-challenge-completed.ts"
+    },
+    {
+      "source": "./src/schemas.ts",
+      "target": "./src/schemas/challenge/coderoad-challenge-completed.ts"
+    },
+    {
+      "source": "./src/schemas.ts",
+      "target": "./src/schemas/challenge/exam.ts"
+    },
+    {
+      "source": "./src/schemas.ts",
+      "target": "./src/schemas/challenge/exam-challenge-completed.ts"
+    },
+    {
+      "source": "./src/schemas.ts",
+      "target": "./src/schemas/challenge/daily-coding-challenge-completed.ts"
+    },
+    {
+      "source": "./src/schemas.ts",
+      "target": "./src/schemas/challenge/modern-challenge-completed.ts"
+    },
+    {
+      "source": "./src/schemas.ts",
+      "target": "./src/schemas/challenge/ms-trophy-challenge-completed.ts"
+    },
+    {
+      "source": "./src/schemas.ts",
+      "target": "./src/schemas/challenge/project-completed.ts"
+    },
+    {
+      "source": "./src/schemas.ts",
+      "target": "./src/schemas/challenge/save-challenge.ts"
+    },
+    {
+      "source": "./src/schemas.ts",
+      "target": "./src/schemas/challenge/submit-quiz-attempt.ts"
+    },
+    {
+      "source": "./src/schemas.ts",
+      "target": "./src/schemas/deprecated/index.ts"
+    },
+    {
+      "source": "./src/schemas.ts",
+      "target": "./src/schemas/donate/add-donation.ts"
+    },
+    {
+      "source": "./src/schemas.ts",
+      "target": "./src/schemas/donate/charge-stripe-card.ts"
+    },
+    {
+      "source": "./src/schemas.ts",
+      "target": "./src/schemas/donate/charge-stripe.ts"
+    },
+    {
+      "source": "./src/schemas.ts",
+      "target": "./src/schemas/donate/create-stripe-payment-intent.ts"
+    },
+    {
+      "source": "./src/schemas.ts",
+      "target": "./src/schemas/donate/update-stripe-card.ts"
+    },
+    {
+      "source": "./src/schemas.ts",
+      "target": "./src/schemas/email-subscription/resubscribe.ts"
+    },
+    {
+      "source": "./src/schemas.ts",
+      "target": "./src/schemas/email-subscription/unsubscribe.ts"
+    },
+    {
+      "source": "./src/schemas.ts",
+      "target": "./src/schemas/settings/update-my-about.ts"
+    },
+    {
+      "source": "./src/schemas.ts",
+      "target": "./src/schemas/settings/confirm-email.ts"
+    },
+    {
+      "source": "./src/schemas.ts",
+      "target": "./src/schemas/settings/update-my-classroom-mode.ts"
+    },
+    {
+      "source": "./src/schemas.ts",
+      "target": "./src/schemas/settings/update-my-email.ts"
+    },
+    {
+      "source": "./src/schemas.ts",
+      "target": "./src/schemas/settings/update-my-honesty.ts"
+    },
+    {
+      "source": "./src/schemas.ts",
+      "target": "./src/schemas/settings/update-my-keyboard-shortcuts.ts"
+    },
+    {
+      "source": "./src/schemas.ts",
+      "target": "./src/schemas/settings/update-my-portfolio.ts"
+    },
+    {
+      "source": "./src/schemas.ts",
+      "target": "./src/schemas/settings/update-my-privacy-terms.ts"
+    },
+    {
+      "source": "./src/schemas.ts",
+      "target": "./src/schemas/settings/update-my-profile-ui.ts"
+    },
+    {
+      "source": "./src/schemas.ts",
+      "target": "./src/schemas/settings/update-my-quincy-email.ts"
+    },
+    {
+      "source": "./src/schemas.ts",
+      "target": "./src/schemas/settings/update-my-socials.ts"
+    },
+    {
+      "source": "./src/schemas.ts",
+      "target": "./src/schemas/settings/update-my-theme.ts"
+    },
+    {
+      "source": "./src/schemas.ts",
+      "target": "./src/schemas/settings/update-my-username.ts"
+    },
+    {
+      "source": "./src/schemas.ts",
+      "target": "./src/schemas/user/delete-ms-username.ts"
+    },
+    {
+      "source": "./src/schemas.ts",
+      "target": "./src/schemas/user/delete-my-account.ts"
+    },
+    {
+      "source": "./src/schemas.ts",
+      "target": "./src/schemas/user/delete-user-token.ts"
+    },
+    {
+      "source": "./src/schemas.ts",
+      "target": "./src/schemas/user/get-session-user.ts"
+    },
+    {
+      "source": "./src/schemas.ts",
+      "target": "./src/schemas/user/post-ms-username.ts"
+    },
+    {
+      "source": "./src/schemas.ts",
+      "target": "./src/schemas/user/report-user.ts"
+    },
+    {
+      "source": "./src/schemas.ts",
+      "target": "./src/schemas/user/reset-my-progress.ts"
+    },
+    {
+      "source": "./src/schemas.ts",
+      "target": "./src/schemas/user/submit-survey.ts"
+    },
+    {
+      "source": "./src/schemas.ts",
+      "target": "./src/schemas/user/exam-environment-token.ts"
+    },
+    {
+      "source": "./src/schemas.ts",
+      "target": "./src/schemas/sentry/event.ts"
+    },
+    {
+      "source": "./src/schemas/certificate/certificate-verify.ts",
+      "target": "./src/schemas/types.ts"
+    },
+    {
+      "source": "./src/schemas/challenge/backend-challenge-completed.ts",
+      "target": "./src/schemas/types.ts"
+    },
+    {
+      "source": "./src/schemas/challenge/exam-challenge-completed.ts",
+      "target": "./src/schemas/types.ts"
+    },
+    {
+      "source": "./src/schemas/challenge/exam.ts",
+      "target": "./src/schemas/types.ts"
+    },
+    {
+      "source": "./src/schemas/challenge/modern-challenge-completed.ts",
+      "target": "./src/schemas/types.ts"
+    },
+    {
+      "source": "./src/schemas/challenge/project-completed.ts",
+      "target": "./src/schemas/types.ts"
+    },
+    {
+      "source": "./src/schemas/challenge/save-challenge.ts",
+      "target": "./src/schemas/types.ts"
+    },
+    {
+      "source": "./src/schemas/challenge/submit-quiz-attempt.ts",
+      "target": "./src/schemas/types.ts"
+    },
+    {
+      "source": "./src/schemas/donate/update-stripe-card.ts",
+      "target": "./src/schemas/types.ts"
+    },
+    {
+      "source": "./src/schemas/settings/update-my-classroom-mode.ts",
+      "target": "./src/schemas/types.ts"
+    },
+    {
+      "source": "./src/schemas/user/delete-my-account.ts",
+      "target": "./src/schemas/types.ts"
+    },
+    {
+      "source": "./src/schemas/user/delete-user-token.ts",
+      "target": "./src/schemas/types.ts"
+    },
+    {
+      "source": "./src/schemas/user/exam-environment-token.ts",
+      "target": "./src/exam-environment/utils/errors.ts"
+    },
+    {
+      "source": "./src/schemas/user/get-session-user.ts",
+      "target": "./src/schemas/types.ts"
+    },
+    {
+      "source": "./src/schemas/user/post-ms-username.ts",
+      "target": "./src/schemas/types.ts"
+    },
+    {
+      "source": "./src/schemas/user/report-user.ts",
+      "target": "./src/schemas/types.ts"
+    },
+    {
+      "source": "./src/schemas/user/reset-my-progress.ts",
+      "target": "./src/schemas/types.ts"
+    },
+    {
+      "source": "./src/schemas/user/submit-survey.ts",
+      "target": "./src/schemas/types.ts"
+    },
+    {
+      "source": "./src/schemas/users/get-public-profile.ts",
+      "target": "./src/schemas/types.ts"
+    },
+    {
+      "source": "./src/server.test.ts",
+      "target": "./vitest.utils.ts"
+    },
+    {
+      "source": "./src/server.test.ts",
+      "target": "./src/utils/env.ts"
+    },
+    {
+      "source": "./src/server.ts",
+      "target": "./src/instrument.ts"
+    },
+    {
+      "source": "./src/server.ts",
+      "target": "./src/app.ts"
+    },
+    {
+      "source": "./src/server.ts",
+      "target": "./src/utils/env.ts"
+    },
+    {
+      "source": "./src/utils/allowed-origins.ts",
+      "target": "./src/utils/env.ts"
+    },
+    {
+      "source": "./src/utils/exam-schemas.ts",
+      "target": "./src/utils/exam-types.ts"
+    },
+    {
+      "source": "./src/utils/exam.test.ts",
+      "target": "./__mocks__/exam.ts"
+    },
+    {
+      "source": "./src/utils/exam.test.ts",
+      "target": "./src/utils/exam.ts"
+    },
+    {
+      "source": "./src/utils/exam.test.ts",
+      "target": "./src/utils/exam-types.ts"
+    },
+    {
+      "source": "./src/utils/get-challenges.test.ts",
+      "target": "./src/utils/get-challenges.ts"
+    },
+    {
+      "source": "./src/utils/get-challenges.test.ts",
+      "target": "./src/utils/validation.ts"
+    },
+    {
+      "source": "./src/utils/index.test.ts",
+      "target": "./src/utils/index.ts"
+    },
+    {
+      "source": "./src/utils/logger.ts",
+      "target": "./src/utils/env.ts"
+    },
+    {
+      "source": "./src/utils/normalize.test.ts",
+      "target": "./src/utils/normalize.ts"
+    },
+    {
+      "source": "./src/utils/progress.test.ts",
+      "target": "./src/utils/progress.ts"
+    },
+    {
+      "source": "./src/utils/redirection.test.ts",
+      "target": "./src/utils/redirection.ts"
+    },
+    {
+      "source": "./src/utils/redirection.test.ts",
+      "target": "./src/utils/env.ts"
+    },
+    {
+      "source": "./src/utils/tokens.test.ts",
+      "target": "./src/utils/tokens.ts"
+    },
+    {
+      "source": "./src/utils/tokens.ts",
+      "target": "./src/utils/ids.ts"
+    },
+    {
+      "source": "./src/utils/tokens.ts",
+      "target": "./src/utils/env.ts"
+    },
+    {
+      "source": "./src/utils/validate-donation.test.ts",
+      "target": "./src/utils/validate-donation.ts"
+    },
+    {
+      "source": "./src/utils/validation.test.ts",
+      "target": "./src/utils/validation.ts"
+    },
+    {
+      "source": "./tools/exam-environment/generate/deprecate.ts",
+      "target": "./src/utils/env.ts"
+    },
+    {
+      "source": "./tools/exam-environment/generate/index.ts",
+      "target": "./src/exam-environment/utils/exam-environment.ts"
+    },
+    {
+      "source": "./tools/exam-environment/generate/index.ts",
+      "target": "./src/utils/env.ts"
+    },
+    {
+      "source": "./tools/exam-environment/generate/insert.ts",
+      "target": "./src/utils/env.ts"
+    },
+    {
+      "source": "./tools/exam-environment/seed/index.ts",
+      "target": "./__mocks__/exam-environment-exam.ts"
+    },
+    {
+      "source": "./tools/exam-environment/seed/index.ts",
+      "target": "./src/utils/env.ts"
+    },
+    {
+      "source": "./tools/exam-environment/test/index.ts",
+      "target": "./src/utils/env.ts"
+    },
+    {
+      "source": "./vitest.utils.test.ts",
+      "target": "./vitest.utils.ts"
+    },
+    {
+      "source": "./vitest.utils.ts",
+      "target": "./src/app.ts"
+    },
+    {
+      "source": "./vitest.utils.ts",
+      "target": "./src/utils/create-user.ts"
+    },
+    {
+      "source": "./vitest.utils.ts",
+      "target": "./__mocks__/exam.ts"
+    },
+    {
+      "source": "./vitest.utils.ts",
+      "target": "./src/plugins/csrf.ts"
+    }
+  ]
+}

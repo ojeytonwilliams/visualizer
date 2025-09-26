@@ -2,8 +2,11 @@
 import Layout from '../layouts/Layout.astro';
 import Visualizer from '../components/Visualizer';
 
+// Use this to play with mock data
+// import dependencyMap from '../../mock-map-data/dependency-map.json';
+
 // Hardcoded fetch/
-const data = await fetch('http://localhost:3001/dependency-map', {
+const { dependencyMap } = await fetch('http://localhost:3001/dependency-map', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
@@ -14,5 +17,5 @@ const data = await fetch('http://localhost:3001/dependency-map', {
 ---
 
 <Layout>
-  <Visualizer client:load dependencyMap={data.dependencyMap} />
+  <Visualizer client:load dependencyMap={dependencyMap} />
 </Layout>
