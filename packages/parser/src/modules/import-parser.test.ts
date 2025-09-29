@@ -245,6 +245,32 @@ describe('import-parser', () => {
         './root-level',
       ]);
     });
+
+    it('should handle tsx files', () => {
+      const filename = './src/component.tsx';
+      const contents = `
+        import React from 'react';
+        import { helper } from './helper';
+        const element = <div>Hello, World!</div>;
+      `;
+
+      const result = parse({ filename, contents, rootDir });
+
+      expect(result).toEqual(['react', './src/helper']);
+    });
+
+    it('should handle jsx files', () => {
+      const filename = './src/component.jsx';
+      const contents = `
+        import React from 'react';
+        import { helper } from './helper';
+        const element = <div>Hello, World!</div>;
+      `;
+
+      const result = parse({ filename, contents, rootDir });
+
+      expect(result).toEqual(['react', './src/helper']);
+    });
   });
 
   describe('resolveImportPath', () => {
