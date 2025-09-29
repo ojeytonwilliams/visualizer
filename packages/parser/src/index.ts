@@ -1,27 +1,13 @@
-import Fastify from 'fastify';
-import cors from '@fastify/cors';
-
 import { parser } from './routes/parse.js';
-
-const fastify = Fastify({
-  logger: true,
-});
-
-// Register CORS plugin
-await fastify.register(cors, {
-  origin: true,
-});
-
-// Health check endpoint
-fastify.get('/health', async () => {
-  return { status: 'ok', timestamp: new Date().toISOString() };
-});
-
-fastify.register(parser);
+import { healthCheck } from './routes/health-check.js';
+import { setup } from './server.js';
 
 // Start server
 const start = async () => {
+  const fastify = await setup();
   try {
+    await fastify.register(healthCheck);
+    await fastify.register(parser);
     const port = process.env.PORT ? parseInt(process.env.PORT) : 3001;
     await fastify.listen({ port, host: '0.0.0.0' });
     console.log(`Parser server running on port ${port}`);

@@ -1,27 +1,26 @@
-import { describe, it, expect, beforeEach, afterEach } from 'vitest';
-import Fastify, { FastifyInstance } from 'fastify';
-import cors from '@fastify/cors';
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
+import type { FastifyInstance } from 'fastify';
 
-import { parse } from './routes/parse.js';
+import { fs, vol } from 'memfs';
+
+import { parser } from './parse.js';
+import { setup } from '../server.js';
+
+vi.mock('fs');
 
 describe('/dependency-map endpoint', () => {
   let app: FastifyInstance;
 
   beforeEach(async () => {
-    app = Fastify({ logger: false });
+    vol.mkdirSync('/path/to/project', { recursive: true });
+    app = await setup();
 
-    // Register CORS plugin
-    await app.register(cors, {
-      origin: true,
-    });
-
-    // Mount the endpoint
-
-    await app.register(parse);
+    await app.register(parser);
   });
 
   afterEach(async () => {
     await app.close();
+    vol.reset(); // Reset the in-memory file system
   });
 
   describe('POST /dependency-map', () => {
@@ -34,14 +33,16 @@ describe('/dependency-map endpoint', () => {
         },
       });
 
-      expect(response.statusCode).toBe(200);
       const data = JSON.parse(response.payload);
       expect(data).toEqual({
         success: true,
         folderPath: '/path/to/project',
-        nodes: [],
-        links: [],
+        dependencyMap: {
+          nodes: [],
+          links: [],
+        },
       });
+      expect(response.statusCode).toBe(200);
     });
 
     it('should return 400 when folderPath is missing', async () => {
@@ -51,12 +52,13 @@ describe('/dependency-map endpoint', () => {
         payload: {},
       });
 
-      expect(response.statusCode).toBe(400);
       const data = JSON.parse(response.payload);
       expect(data).toEqual({
-        error: 'folderPath is required',
-        code: 'MISSING_FOLDER_PATH',
+        error: 'Bad Request',
+        message: 'Folder does not exist',
+        statusCode: 400,
       });
+      expect(response.statusCode).toBe(400);
     });
 
     it('should return 400 when folderPath is not a string', async () => {

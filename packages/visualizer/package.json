@@ -1,5 +1,5 @@
 {
-  "name": "@dependency-graph/visualizer",
+  "name": "visualizer",
   "version": "1.0.0",
   "description": "Frontend visualizer for dependency graphs using Astro and React",
   "type": "module",
