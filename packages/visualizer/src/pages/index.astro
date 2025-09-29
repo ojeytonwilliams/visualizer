@@ -12,7 +12,7 @@ const { dependencyMap } = await fetch('http://localhost:3001/dependency-map', {
     'Content-Type': 'application/json',
   },
   // Change this to point to the folder you want to visualize
-  body: JSON.stringify({ folderPath: '../../../freeCodeCamp/api/' }),
+  body: JSON.stringify({ folderPath: '../../../freeCodeCamp/' }),
 }).then(res => res.json());
 ---
 
