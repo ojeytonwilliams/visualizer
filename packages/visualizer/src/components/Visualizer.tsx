@@ -141,12 +141,12 @@ const CustomFileNodeComponent = ({ data }: NodeProps) => {
             ? `linear-gradient(135deg, ${backgroundOverlay}, ${backgroundOverlay}), ${backgroundColor}`
             : backgroundColor,
         border: `${borderWidth}px solid ${borderHighlightColor}`,
-        borderRadius: '16px',
-        padding: 'clamp(9px, 0.9vw, 14px) clamp(10px, 1.2vw, 18px)',
-        width: nodeWidth ? `${nodeWidth}px` : 'auto',
-        minWidth: '120px',
-        maxWidth: '360px',
-        fontSize: 'clamp(10px, 0.9vw, 12px)',
+        borderRadius: '10px',
+        padding: 'clamp(4.5px, 0.45vw, 7px) clamp(5px, 0.6vw, 9px)',
+        width: nodeWidth ? `${Math.round(nodeWidth)}px` : 'auto',
+        minWidth: '80px',
+        maxWidth: '500px',
+        fontSize: 'clamp(5px, 0.45vw, 6px)',
         fontWeight: '600',
         textAlign: 'center',
         color: textColor,
@@ -160,15 +160,15 @@ const CustomFileNodeComponent = ({ data }: NodeProps) => {
         <Handle
           key={`target-${index}`}
           type="target"
-          position={Position.Top}
+          position={Position.Bottom}
           id={`target-${index}`}
           style={{
             background: handleHighlightColor,
-            width: 'clamp(6px, 0.6vw, 10px)',
-            height: 'clamp(6px, 0.6vw, 10px)',
+            width: 'clamp(3px, 0.3vw, 5px)',
+            height: 'clamp(3px, 0.3vw, 5px)',
             left: `${((index + 1) / (targetCount + 1)) * 100}%`,
-            top: 0,
-            transform: 'translate(-50%, -50%)',
+            bottom: 0,
+            transform: 'translate(-50%, 50%)',
           }}
         />
       ))}
@@ -176,15 +176,15 @@ const CustomFileNodeComponent = ({ data }: NodeProps) => {
         <Handle
           key={`source-${index}`}
           type="source"
-          position={Position.Bottom}
+          position={Position.Top}
           id={`source-${index}`}
           style={{
             background: handleHighlightColor,
-            width: 'clamp(6px, 0.6vw, 10px)',
-            height: 'clamp(6px, 0.6vw, 10px)',
+            width: 'clamp(3px, 0.3vw, 5px)',
+            height: 'clamp(3px, 0.3vw, 5px)',
             left: `${((index + 1) / (sourceCount + 1)) * 100}%`,
-            bottom: 0,
-            transform: 'translate(-50%, 50%)',
+            top: 0,
+            transform: 'translate(-50%, -50%)',
           }}
         />
       ))}
@@ -195,13 +195,13 @@ const CustomFileNodeComponent = ({ data }: NodeProps) => {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          gap: '8px',
+          gap: '4px',
           width: '100%',
         }}
       >
         <div
           style={{
-            fontSize: 'clamp(12px, 1vw, 16px)',
+            fontSize: 'clamp(6px, 0.5vw, 8px)',
             lineHeight: 1.2,
             wordBreak: 'break-word',
             color: 'rgba(255, 255, 255, 1)',
@@ -221,7 +221,7 @@ const CustomFileNodeComponent = ({ data }: NodeProps) => {
         />
         <div
           style={{
-            fontSize: 'clamp(8px, 0.8vw, 12px)',
+            fontSize: 'clamp(4px, 0.4vw, 6px)',
             color: 'rgba(255, 255, 255, 0.75)',
             fontWeight: '500',
             lineHeight: 1.4,
@@ -266,7 +266,7 @@ const FlowAnimationStyles = () => (
           stroke-dashoffset: 0;
         }
         100% {
-          stroke-dashoffset: -${FLOW_DASH_CYCLE};
+          stroke-dashoffset: ${FLOW_DASH_CYCLE};
         }
       }
     `}
@@ -421,24 +421,27 @@ export default function Visualizer({
     });
 
     const totalNodes = data.nodes.length;
-    const NODE_MIN_WIDTH = 140;
-    const NODE_MAX_WIDTH = 320;
-    const NODE_VERTICAL_EXTENT = 120;
+    const NODE_MIN_WIDTH = 80;
+    const NODE_MAX_WIDTH = 500;
+    const NODE_VERTICAL_EXTENT = 60;
     const HORIZONTAL_GAP_MIN = 40;
     const HORIZONTAL_GAP_MAX = 130;
-    const NAME_CHAR_WIDTH = 8;
-    const PATH_CHAR_WIDTH = 3;
+    const NAME_CHAR_WIDTH = 9;
+    const PATH_CHAR_WIDTH = 5;
+    const HORIZONTAL_PADDING = 32;
+    const PATH_LENGTH_CAP = 120;
     const nodeSizing = new Map<string, { width: number }>();
     data.nodes.forEach(node => {
       const fileName = node.id.split('/').pop() || node.id;
       const fullPath = node.id;
-      const nameContribution = fileName.length * NAME_CHAR_WIDTH;
-      const pathContribution = Math.min(fullPath.length, 80) * PATH_CHAR_WIDTH;
-      const estimatedWidth =
-        NODE_MIN_WIDTH + Math.max(nameContribution, pathContribution);
+      const nameWidth = Math.max(fileName.length, 1) * NAME_CHAR_WIDTH;
+      const pathWidth =
+        Math.max(Math.min(fullPath.length, PATH_LENGTH_CAP), 1) *
+        PATH_CHAR_WIDTH;
+      const contentWidth = Math.max(nameWidth, pathWidth) + HORIZONTAL_PADDING;
       const width = Math.max(
         NODE_MIN_WIDTH,
-        Math.min(NODE_MAX_WIDTH, estimatedWidth)
+        Math.min(NODE_MAX_WIDTH, Math.round(contentWidth))
       );
       nodeSizing.set(node.id, { width });
     });
@@ -570,11 +573,11 @@ export default function Visualizer({
     });
 
     const orderedMetrics = [
-      ...pureSources,
-      ...sourceDominant,
-      ...balanced,
-      ...targetDominant,
       ...pureTargets,
+      ...targetDominant,
+      ...balanced,
+      ...sourceDominant,
+      ...pureSources,
     ];
 
     const orderedIds = orderedMetrics.map(node => node.id);
@@ -583,7 +586,8 @@ export default function Visualizer({
       orderedIds.push(...nodesWithMetrics.map(node => node.id));
     }
 
-    const targetRowCount = Math.max(1, Math.round(Math.sqrt(totalNodes)));
+    const baseRowCount = Math.max(1, Math.round(Math.sqrt(totalNodes)));
+    const targetRowCount = Math.max(1, Math.ceil(baseRowCount * 1.5));
     const rows: string[][] = [];
 
     let startIndex = 0;
@@ -627,7 +631,8 @@ export default function Visualizer({
             Math.min(HORIZONTAL_GAP_MAX, 800 / Math.max(1, maxRowLength - 1))
           )
         : HORIZONTAL_GAP_MIN;
-    const verticalGap = baseGap;
+    const adjustedBaseGap = baseGap / 2;
+    const verticalGap = adjustedBaseGap * 0.675;
     const verticalStep = NODE_VERTICAL_EXTENT + verticalGap;
 
     const nodePositions = new Map<string, { x: number; y: number }>();
@@ -637,7 +642,7 @@ export default function Visualizer({
       );
       const totalWidth =
         widths.reduce((sum, width) => sum + width, 0) +
-        baseGap * Math.max(0, row.length - 1);
+        adjustedBaseGap * Math.max(0, row.length - 1);
       let currentX = -totalWidth / 2;
 
       row.forEach((nodeId, index) => {
@@ -646,7 +651,7 @@ export default function Visualizer({
           x: currentX,
           y: rowIndex * verticalStep,
         });
-        currentX += width + baseGap;
+        currentX += width + adjustedBaseGap;
       });
     });
 
@@ -670,8 +675,8 @@ export default function Visualizer({
           highlightState: undefined,
         },
         type: 'customFile',
-        sourcePosition: Position.Bottom,
-        targetPosition: Position.Top,
+        sourcePosition: Position.Top,
+        targetPosition: Position.Bottom,
       } as Node;
     });
 
