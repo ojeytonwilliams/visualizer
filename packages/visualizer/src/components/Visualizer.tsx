@@ -284,12 +284,12 @@ const ContainerGroupNodeComponent = ({
 
 const ContainerGroupNode = memo(ContainerGroupNodeComponent);
 
-const CONTAINER_PATHS = ['./src/schemas', './src/plugins'];
-
 const nodeTypes = {
   customFile: CustomFileNode,
   containerGroup: ContainerGroupNode,
 };
+
+const uniques = <T,>(arr: T[]) => Array.from(new Set(arr));
 
 const FLOW_DASH_SEGMENT = 14;
 const FLOW_GAP_SEGMENT = 12;
@@ -658,7 +658,20 @@ export default function Visualizer({
       return rows.filter(row => row.length > 0);
     };
 
-    const containerConfigs = CONTAINER_PATHS.map((path, index) => ({
+    // Hack to find the root directories
+    const containerPaths = uniques(
+      data.nodes
+        .map(node => {
+          const parts = node.id.split('/');
+          const maybeDirectory = parts[1];
+          if (!maybeDirectory) return null;
+
+          return maybeDirectory.includes('.') ? null : `./${maybeDirectory}`;
+        })
+        .filter(x => x !== null)
+    );
+
+    const containerConfigs = containerPaths.map((path, index) => ({
       id: `container-${index}`,
       path,
     }));
@@ -1017,7 +1030,7 @@ export default function Visualizer({
         onConnect={onConnect}
         onNodeClick={handleNodeClick}
         fitView
-        minZoom={0.1}
+        minZoom={0.05}
         onlyRenderVisibleElements
         fitViewOptions={{
           padding: 50,
