@@ -249,8 +249,58 @@ const CustomFileNode = memo(
       (next.data.highlightState?.isConnected ?? false)
 );
 
+const ContainerGroupNodeComponent = ({
+  data,
+}: NodeProps<{ label?: string; padding?: number }>) => {
+  const label = data?.label ?? '';
+  const paddingValue = data?.padding ?? 16;
+
+  const labelOffset = Math.max(18, paddingValue * 0.75);
+  const labelLeft = Math.max(8, paddingValue - 8);
+
+  return (
+    <div
+      style={{
+        width: '100%',
+        height: '100%',
+        border: '2px solid rgba(56, 189, 248, 0.65)',
+        borderRadius: '18px',
+        boxSizing: 'border-box',
+        padding: `${paddingValue}px`,
+        position: 'relative',
+        pointerEvents: 'auto',
+      }}
+    >
+      {label ? (
+        <div
+          style={{
+            position: 'absolute',
+            top: `-${labelOffset}px`,
+            left: `${labelLeft}px`,
+            fontSize: 'clamp(9px, 0.65vw, 12px)',
+            fontWeight: 700,
+            color: '#38bdf8',
+            letterSpacing: '0.08em',
+            textTransform: 'uppercase',
+            opacity: 0.92,
+            pointerEvents: 'none',
+            whiteSpace: 'nowrap',
+          }}
+        >
+          {label}
+        </div>
+      ) : null}
+    </div>
+  );
+};
+
+const ContainerGroupNode = memo(ContainerGroupNodeComponent);
+
+const CONTAINER_PATHS = ['./src/schemas', './src/plugins'];
+
 const nodeTypes = {
   customFile: CustomFileNode,
+  containerGroup: ContainerGroupNode,
 };
 
 const FLOW_DASH_SEGMENT = 14;
@@ -298,7 +348,7 @@ const FlowingEdge = ({
   if (baseStyle.strokeWidth) delete baseStyle.strokeWidth;
 
   const isActive = data?.isActive ?? false;
-  const strokeColor = isActive ? '#fb923c' : '#16526bff';
+  const strokeColor = isActive ? '#fb923c' : 'rgba(96, 165, 250, 0.4)';
   const strokeWidth = isActive ? 3 : 2;
 
   return (
@@ -317,7 +367,7 @@ const FlowingEdge = ({
             ? `flowingEdgeAnimation ${FLOW_ANIMATION_DURATION}s linear infinite`
             : undefined,
           filter: isActive
-            ? 'drop-shadow(0 0 14px rgba(56, 189, 248, 0.55))'
+            ? 'drop-shadow(0 0 14px rgba(248, 162, 56, 0.55))'
             : undefined,
           strokeLinecap: 'round',
           strokeLinejoin: 'round',
@@ -420,7 +470,6 @@ export default function Visualizer({
       }
     });
 
-    const totalNodes = data.nodes.length;
     const NODE_MIN_WIDTH = 80;
     const NODE_MAX_WIDTH = 500;
     const NODE_VERTICAL_EXTENT = 60;
@@ -463,165 +512,200 @@ export default function Visualizer({
       };
     });
 
-    const pureSources: typeof nodesWithMetrics = [];
-    const sourceDominant: typeof nodesWithMetrics = [];
-    const balanced: typeof nodesWithMetrics = [];
-    const targetDominant: typeof nodesWithMetrics = [];
-    const pureTargets: typeof nodesWithMetrics = [];
+    type NodeMetric = (typeof nodesWithMetrics)[number];
 
-    nodesWithMetrics.forEach(node => {
-      if (node.targetCount === 0 && node.sourceCount > 0) {
-        pureSources.push(node);
-        return;
-      }
-
-      if (node.sourceCount === 0 && node.targetCount > 0) {
-        pureTargets.push(node);
-        return;
-      }
-
-      if (node.sourceCount > node.targetCount) {
-        sourceDominant.push(node);
-        return;
-      }
-
-      if (node.targetCount > node.sourceCount) {
-        targetDominant.push(node);
-        return;
-      }
-
-      balanced.push(node);
+    const metricsById = new Map<string, NodeMetric>();
+    nodesWithMetrics.forEach(metric => {
+      metricsById.set(metric.id, metric);
     });
 
-    const compareById = (
-      a: (typeof nodesWithMetrics)[number],
-      b: (typeof nodesWithMetrics)[number]
-    ) => a.id.localeCompare(b.id);
+    const compareById = (a: NodeMetric, b: NodeMetric) =>
+      a.id.localeCompare(b.id);
 
-    pureSources.sort((a, b) => {
-      if (b.sourceCount !== a.sourceCount) {
-        return b.sourceCount - a.sourceCount;
+    const sortByImportance = (metricsList: NodeMetric[]) => {
+      const pureSources: NodeMetric[] = [];
+      const sourceDominant: NodeMetric[] = [];
+      const balanced: NodeMetric[] = [];
+      const targetDominant: NodeMetric[] = [];
+      const pureTargets: NodeMetric[] = [];
+
+      metricsList.forEach(metric => {
+        if (metric.targetCount === 0 && metric.sourceCount > 0) {
+          pureSources.push(metric);
+          return;
+        }
+
+        if (metric.sourceCount === 0 && metric.targetCount > 0) {
+          pureTargets.push(metric);
+          return;
+        }
+
+        if (metric.sourceCount > metric.targetCount) {
+          sourceDominant.push(metric);
+          return;
+        }
+
+        if (metric.targetCount > metric.sourceCount) {
+          targetDominant.push(metric);
+          return;
+        }
+
+        balanced.push(metric);
+      });
+
+      pureSources.sort((a, b) => {
+        if (b.sourceCount !== a.sourceCount) {
+          return b.sourceCount - a.sourceCount;
+        }
+        if (a.level !== b.level) {
+          return a.level - b.level;
+        }
+        if (b.totalConnections !== a.totalConnections) {
+          return b.totalConnections - a.totalConnections;
+        }
+        return compareById(a, b);
+      });
+
+      sourceDominant.sort((a, b) => {
+        if (b.difference !== a.difference) {
+          return b.difference - a.difference;
+        }
+        if (b.sourceCount !== a.sourceCount) {
+          return b.sourceCount - a.sourceCount;
+        }
+        if (a.targetCount !== b.targetCount) {
+          return a.targetCount - b.targetCount;
+        }
+        if (a.level !== b.level) {
+          return a.level - b.level;
+        }
+        if (b.totalConnections !== a.totalConnections) {
+          return b.totalConnections - a.totalConnections;
+        }
+        return compareById(a, b);
+      });
+
+      balanced.sort((a, b) => {
+        if (b.totalConnections !== a.totalConnections) {
+          return b.totalConnections - a.totalConnections;
+        }
+        if (a.level !== b.level) {
+          return a.level - b.level;
+        }
+        return compareById(a, b);
+      });
+
+      targetDominant.sort((a, b) => {
+        if (a.difference !== b.difference) {
+          return a.difference - b.difference;
+        }
+        if (b.targetCount !== a.targetCount) {
+          return b.targetCount - a.targetCount;
+        }
+        if (a.sourceCount !== b.sourceCount) {
+          return a.sourceCount - b.sourceCount;
+        }
+        if (a.level !== b.level) {
+          return a.level - b.level;
+        }
+        if (b.totalConnections !== a.totalConnections) {
+          return b.totalConnections - a.totalConnections;
+        }
+        return compareById(a, b);
+      });
+
+      pureTargets.sort((a, b) => {
+        if (b.targetCount !== a.targetCount) {
+          return b.targetCount - a.targetCount;
+        }
+        if (a.level !== b.level) {
+          return a.level - b.level;
+        }
+        if (b.totalConnections !== a.totalConnections) {
+          return b.totalConnections - a.totalConnections;
+        }
+        return compareById(a, b);
+      });
+
+      return [
+        ...pureTargets,
+        ...targetDominant,
+        ...balanced,
+        ...sourceDominant,
+        ...pureSources,
+      ].map(metric => metric.id);
+    };
+
+    const buildEvenRows = (orderedIds: string[]) => {
+      if (orderedIds.length === 0) {
+        return [] as string[][];
       }
-      if (a.level !== b.level) {
-        return a.level - b.level;
+
+      const desiredRowCount = Math.max(
+        1,
+        Math.round(Math.sqrt(orderedIds.length))
+      );
+      const rows: string[][] = [];
+      let startIndex = 0;
+
+      for (let rowIndex = 0; rowIndex < desiredRowCount; rowIndex += 1) {
+        const remainingNodes = orderedIds.length - startIndex;
+        const remainingRows = desiredRowCount - rowIndex;
+        if (remainingNodes <= 0) {
+          break;
+        }
+        const rowSize = Math.ceil(remainingNodes / remainingRows);
+        rows.push(orderedIds.slice(startIndex, startIndex + rowSize));
+        startIndex += rowSize;
       }
-      if (b.totalConnections !== a.totalConnections) {
-        return b.totalConnections - a.totalConnections;
+
+      if (startIndex < orderedIds.length) {
+        if (rows.length === 0) {
+          rows.push(orderedIds.slice(startIndex));
+        } else {
+          rows[rows.length - 1].push(...orderedIds.slice(startIndex));
+        }
       }
-      return compareById(a, b);
+
+      return rows.filter(row => row.length > 0);
+    };
+
+    const containerConfigs = CONTAINER_PATHS.map((path, index) => ({
+      id: `container-${index}`,
+      path,
+    }));
+
+    const nodesAssignedToContainers = new Set<string>();
+    const containerAssignments = containerConfigs.map(config => {
+      const nodeIds = data.nodes
+        .filter(node => node.id.includes(config.path))
+        .map(node => node.id);
+
+      nodeIds.forEach(id => nodesAssignedToContainers.add(id));
+
+      const metrics = nodeIds
+        .map(id => metricsById.get(id))
+        .filter((metric): metric is NodeMetric => metric !== undefined);
+
+      const orderedIds =
+        metrics.length > 0 ? sortByImportance(metrics) : [...nodeIds];
+
+      return {
+        ...config,
+        nodeIds,
+        orderedIds,
+      };
     });
 
-    sourceDominant.sort((a, b) => {
-      if (b.difference !== a.difference) {
-        return b.difference - a.difference;
-      }
-      if (b.sourceCount !== a.sourceCount) {
-        return b.sourceCount - a.sourceCount;
-      }
-      if (a.targetCount !== b.targetCount) {
-        return a.targetCount - b.targetCount;
-      }
-      if (a.level !== b.level) {
-        return a.level - b.level;
-      }
-      if (b.totalConnections !== a.totalConnections) {
-        return b.totalConnections - a.totalConnections;
-      }
-      return compareById(a, b);
-    });
+    const nonContainerMetrics = nodesWithMetrics.filter(
+      metric => !nodesAssignedToContainers.has(metric.id)
+    );
+    const orderedNonContainerIds = sortByImportance(nonContainerMetrics);
 
-    balanced.sort((a, b) => {
-      if (b.totalConnections !== a.totalConnections) {
-        return b.totalConnections - a.totalConnections;
-      }
-      if (a.level !== b.level) {
-        return a.level - b.level;
-      }
-      return compareById(a, b);
-    });
+    const nonContainerRows = buildEvenRows(orderedNonContainerIds);
 
-    targetDominant.sort((a, b) => {
-      if (a.difference !== b.difference) {
-        return a.difference - b.difference;
-      }
-      if (b.targetCount !== a.targetCount) {
-        return b.targetCount - a.targetCount;
-      }
-      if (a.sourceCount !== b.sourceCount) {
-        return a.sourceCount - b.sourceCount;
-      }
-      if (a.level !== b.level) {
-        return a.level - b.level;
-      }
-      if (b.totalConnections !== a.totalConnections) {
-        return b.totalConnections - a.totalConnections;
-      }
-      return compareById(a, b);
-    });
-
-    pureTargets.sort((a, b) => {
-      if (b.targetCount !== a.targetCount) {
-        return b.targetCount - a.targetCount;
-      }
-      if (a.level !== b.level) {
-        return a.level - b.level;
-      }
-      if (b.totalConnections !== a.totalConnections) {
-        return b.totalConnections - a.totalConnections;
-      }
-      return compareById(a, b);
-    });
-
-    const orderedMetrics = [
-      ...pureTargets,
-      ...targetDominant,
-      ...balanced,
-      ...sourceDominant,
-      ...pureSources,
-    ];
-
-    const orderedIds = orderedMetrics.map(node => node.id);
-
-    if (orderedIds.length === 0) {
-      orderedIds.push(...nodesWithMetrics.map(node => node.id));
-    }
-
-    const baseRowCount = Math.max(1, Math.round(Math.sqrt(totalNodes)));
-    const targetRowCount = Math.max(1, Math.ceil(baseRowCount * 1.5));
-    const rows: string[][] = [];
-
-    let startIndex = 0;
-    for (let rowIndex = 0; rowIndex < targetRowCount; rowIndex += 1) {
-      const remainingNodes = orderedIds.length - startIndex;
-      const remainingRows = targetRowCount - rowIndex;
-      if (remainingNodes <= 0) {
-        break;
-      }
-      const rowSize = Math.ceil(remainingNodes / remainingRows);
-      rows.push(orderedIds.slice(startIndex, startIndex + rowSize));
-      startIndex += rowSize;
-    }
-
-    if (startIndex < orderedIds.length) {
-      if (rows.length === 0) {
-        rows.push(orderedIds.slice(startIndex));
-      } else {
-        rows[rows.length - 1].push(...orderedIds.slice(startIndex));
-      }
-    }
-
-    if (rows.length === 0) {
-      rows.push([
-        ...(orderedIds.length > 0
-          ? orderedIds
-          : data.nodes.map(node => node.id)),
-      ]);
-    }
-
-    const balancedRows = rows.filter(row => row.length > 0);
-
-    const maxRowLength = balancedRows.reduce(
-      (max, row) => Math.max(max, row.length),
+    const maxRowLength = nonContainerRows.reduce(
+      (max: number, row: string[]) => Math.max(max, row.length),
       0
     );
     const baseGap =
@@ -636,16 +720,16 @@ export default function Visualizer({
     const verticalStep = NODE_VERTICAL_EXTENT + verticalGap;
 
     const nodePositions = new Map<string, { x: number; y: number }>();
-    balancedRows.forEach((row, rowIndex) => {
+    nonContainerRows.forEach((row: string[], rowIndex: number) => {
       const widths = row.map(
-        nodeId => nodeSizing.get(nodeId)?.width ?? NODE_MIN_WIDTH
+        (nodeId: string) => nodeSizing.get(nodeId)?.width ?? NODE_MIN_WIDTH
       );
       const totalWidth =
-        widths.reduce((sum, width) => sum + width, 0) +
+        widths.reduce((sum: number, width: number) => sum + width, 0) +
         adjustedBaseGap * Math.max(0, row.length - 1);
       let currentX = -totalWidth / 2;
 
-      row.forEach((nodeId, index) => {
+      row.forEach((nodeId: string, index: number) => {
         const width = widths[index];
         nodePositions.set(nodeId, {
           x: currentX,
@@ -655,7 +739,7 @@ export default function Visualizer({
       });
     });
 
-    const initialNodes = data.nodes.map(node => {
+    let initialNodes = data.nodes.map(node => {
       const position = nodePositions.get(node.id) ?? { x: 0, y: 0 };
       const fileName = node.id.split('/').pop() || node.id;
       const fullPath = node.id;
@@ -679,6 +763,137 @@ export default function Visualizer({
         targetPosition: Position.Bottom,
       } as Node;
     });
+    const nodeById = new Map(
+      initialNodes.map(node => [node.id, node] as const)
+    );
+
+    let nonContainerNodes = orderedNonContainerIds
+      .map(id => nodeById.get(id))
+      .filter((node): node is Node => node !== undefined);
+    if (nonContainerNodes.length === 0) {
+      nonContainerNodes = initialNodes.filter(
+        node => !nodesAssignedToContainers.has(node.id)
+      );
+    }
+
+    const containerPaddingBase = Math.max(16, adjustedBaseGap / 2);
+    const horizontalGap = adjustedBaseGap;
+    const verticalSpacing = verticalGap;
+    const containerGap = NODE_VERTICAL_EXTENT + verticalSpacing;
+
+    const containerNodes: Node[] = [];
+    let containerCursorY = 0;
+
+    containerAssignments.forEach(
+      ({ id: containerId, orderedIds, nodeIds, path }) => {
+        const layoutIds = orderedIds.length > 0 ? orderedIds : nodeIds;
+        const childNodes = layoutIds
+          .map(nodeId => nodeById.get(nodeId))
+          .filter((node): node is Node => node !== undefined);
+
+        if (childNodes.length === 0) {
+          return;
+        }
+
+        const rows = buildEvenRows(layoutIds).map(rowIds =>
+          rowIds
+            .map(nodeId => nodeById.get(nodeId))
+            .filter((node): node is Node => node !== undefined)
+        );
+
+        const validRows = rows.filter(row => row.length > 0);
+        const padding = containerPaddingBase;
+        const rowWidths = validRows.map(row => {
+          return row.reduce((sum: number, node, index) => {
+            const width =
+              (node.data as { nodeWidth?: number }).nodeWidth ?? NODE_MIN_WIDTH;
+            return sum + width + (index > 0 ? horizontalGap : 0);
+          }, 0);
+        });
+
+        const maxRowWidth = rowWidths.length
+          ? Math.max(...rowWidths)
+          : padding * 2 + NODE_MIN_WIDTH;
+
+        validRows.forEach((row, rowIndex) => {
+          const totalRowWidth = rowWidths[rowIndex] ?? 0;
+          let currentX = padding + (maxRowWidth - totalRowWidth) / 2;
+          const currentY =
+            padding + rowIndex * (NODE_VERTICAL_EXTENT + verticalSpacing);
+
+          row.forEach(node => {
+            const width =
+              (node.data as { nodeWidth?: number }).nodeWidth ?? NODE_MIN_WIDTH;
+
+            node.position = {
+              x: currentX,
+              y: currentY,
+            };
+            node.parentNode = containerId;
+            node.extent = 'parent';
+            node.draggable = true;
+
+            currentX += width + horizontalGap;
+          });
+        });
+
+        const rowCount = validRows.length;
+        const innerHeight = rowCount
+          ? rowCount * NODE_VERTICAL_EXTENT +
+            verticalSpacing * Math.max(0, rowCount - 1)
+          : NODE_VERTICAL_EXTENT;
+        const containerWidth = maxRowWidth + padding * 2;
+        const containerHeight = innerHeight + padding * 2;
+
+        const containerNode: Node = {
+          id: containerId,
+          type: 'containerGroup',
+          position: {
+            x: -containerWidth / 2,
+            y: containerCursorY,
+          },
+          data: {
+            label: path,
+            padding,
+          },
+          draggable: true,
+          selectable: true,
+          focusable: true,
+          style: {
+            width: containerWidth,
+            height: containerHeight,
+          },
+        };
+
+        containerNodes.push(containerNode);
+        containerCursorY += containerHeight + containerGap;
+      }
+    );
+
+    const totalContainerHeight =
+      containerCursorY > 0 ? containerCursorY - containerGap : 0;
+    const nonContainerYOffset =
+      totalContainerHeight > 0 ? totalContainerHeight + containerGap : 0;
+
+    if (nonContainerYOffset > 0) {
+      initialNodes = initialNodes.map(node => {
+        if (nodesAssignedToContainers.has(node.id)) {
+          return node;
+        }
+
+        return {
+          ...node,
+          position: {
+            x: node.position.x,
+            y: node.position.y + nonContainerYOffset,
+          },
+        };
+      });
+    }
+
+    if (containerNodes.length > 0) {
+      initialNodes = [...containerNodes, ...initialNodes];
+    }
 
     const sourceCounters = new Map<string, number>();
     const targetCounters = new Map<string, number>();
