@@ -1029,6 +1029,7 @@ export default function Visualizer({
         onConnect={onConnect}
         onNodeClick={handleNodeClick}
         fitView
+        minZoom={0.1}
         onlyRenderVisibleElements
         fitViewOptions={{
           padding: 50,
