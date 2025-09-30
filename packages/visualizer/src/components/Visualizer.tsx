@@ -235,19 +235,7 @@ const CustomFileNodeComponent = ({ data }: NodeProps) => {
   );
 };
 
-const CustomFileNode = memo(
-  CustomFileNodeComponent,
-  (prev, next) =>
-    prev.data.fileName === next.data.fileName &&
-    prev.data.fullPath === next.data.fullPath &&
-    prev.data.sourceCount === next.data.sourceCount &&
-    prev.data.targetCount === next.data.targetCount &&
-    prev.data.nodeWidth === next.data.nodeWidth &&
-    (prev.data.highlightState?.isSelected ?? false) ===
-      (next.data.highlightState?.isSelected ?? false) &&
-    (prev.data.highlightState?.isConnected ?? false) ===
-      (next.data.highlightState?.isConnected ?? false)
-);
+const CustomFileNode = memo(CustomFileNodeComponent);
 
 const ContainerGroupNodeComponent = ({
   data,
