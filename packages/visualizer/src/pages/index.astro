@@ -2,20 +2,17 @@
 import Layout from '../layouts/Layout.astro';
 import Visualizer from '../components/Visualizer';
 
+import { actions } from 'astro:actions';
+
 // Use this to play with mock data
 // import dependencyMap from '../../mock-map-data/dependency-map.json';
 
-// Hardcoded fetch/
-const { dependencyMap } = await fetch('http://localhost:3001/dependency-map', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  // Change this to point to the folder you want to visualize
-  body: JSON.stringify({ folderPath: '../../../freeCodeCamp/' }),
-}).then(res => res.json());
+// TODO: error handling
+const { data } = await Astro.callAction(actions.getDependencyMap, {
+  rootDir: '../../../freeCodeCamp/api/src',
+});
 ---
 
 <Layout>
-  <Visualizer client:load dependencyMap={dependencyMap} />
+  <Visualizer client:load dependencyMap={data!.dependencyMap} />
 </Layout>
