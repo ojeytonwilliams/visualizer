@@ -2,8 +2,7 @@ import fs from 'node:fs';
 import { defineAction } from 'astro:actions';
 import { z } from 'astro:schema';
 
-import { scanDirectory } from '../modules/scanner';
-import { parse } from '../modules/file-parser';
+import { scanDirectory, parse } from '../../../parser/src/dep-mapper/index.js';
 
 export const server = {
   getDependencyMap: defineAction({
