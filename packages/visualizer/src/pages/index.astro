@@ -8,11 +8,13 @@ import { actions } from 'astro:actions';
 // import dependencyMap from '../../mock-map-data/dependency-map.json';
 
 // TODO: error handling
-const { data } = await Astro.callAction(actions.getDependencyMap, {
+const result = await Astro.callAction(actions.getDependencyMap.orThrow, {
   rootDir: '../../../freeCodeCamp/api/src',
 });
+
+const { dependencyGraph } = result;
 ---
 
 <Layout>
-  <Visualizer client:load dependencyMap={data!.dependencyMap} />
+  <Visualizer client:load dependencyGraph={dependencyGraph} />
 </Layout>

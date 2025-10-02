@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import { defineAction } from 'astro:actions';
 import { z } from 'astro:schema';
 
-import { scanDirectory, parse } from '../../../parser/src/dep-mapper/index.js';
+import { getDependencyGraph } from '../../../parser/src/dep-mapper/index.js';
 
 export const server = {
   getDependencyMap: defineAction({
@@ -13,10 +13,8 @@ export const server = {
       if (!fs.existsSync(rootDir)) {
         throw Error(`${rootDir} does not exist`);
       }
-      const files = await scanDirectory(rootDir);
-      const dependencyMap = await parse(files);
 
-      return { dependencyMap };
+      return await getDependencyGraph(rootDir);
     },
   }),
 };

@@ -21,6 +21,8 @@ import type {
 } from 'reactflow';
 import 'reactflow/dist/style.css';
 
+import type { DependencyGraph } from '../../../parser/src/dep-mapper/index.js';
+
 // Grid dot background component
 const GridDotBackground = () => {
   return (
@@ -372,17 +374,12 @@ const edgeTypes = {
   flowing: FlowingEdge,
 };
 
-interface DependencyMap {
-  nodes: { id: string }[];
-  links: { source: string; target: string }[];
-}
-
 export default function Visualizer({
-  dependencyMap,
+  dependencyGraph: dependencyGraph,
 }: {
-  dependencyMap: DependencyMap;
+  dependencyGraph: DependencyGraph;
 }) {
-  const data: DependencyMap = dependencyMap;
+  const data: DependencyGraph = dependencyGraph;
 
   const { initialNodes, initialEdges, adjacency } = useMemo(() => {
     const outgoing = new Map<string, string[]>();
